@@ -56,7 +56,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si","Let the program execute N instructions step by step and then suspend execution.When N is not given, the default is 1", cmd_si},
-  { "info SUBCMD","info r: Print register status; info w: Print Monitoring Point Information",cmd_info},
+  { "info","info r: Print register status; info w: Print Monitoring Point Information",cmd_info},
 
   /* TODO: Add more commands */
 
