@@ -28,6 +28,7 @@ char* rl_gets() {
 }
 
 static int cmd_c(char *args) {
+  printf("%s\n", args);
   cpu_exec(-1);
   return 0;
 }
@@ -55,7 +56,7 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-  { "si","Let the program execute N instructions step by step and then suspend execution.When N is not given, the default is 1", cmd_si},
+  { "si [N]","Let the program execute N instructions step by step and then suspend execution.When N is not given, the default is 1", cmd_si},
   { "info","info r: Print register status; info w: Print Monitoring Point Information",cmd_info},
 
   /* TODO: Add more commands */
