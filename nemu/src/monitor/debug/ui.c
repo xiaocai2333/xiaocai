@@ -33,6 +33,8 @@ static int cmd_c(char *args) {
 }
 
 static int cmd_si(char *args){
+  printf("%d\n", atoi(args));
+  /*
   if(atoi(args) == 0)
     cpu_exec(1);
   else
@@ -41,7 +43,7 @@ static int cmd_si(char *args){
     {
       cpu_exec(1);
     }
-  }
+  }*/
   return 0;
 }
 
