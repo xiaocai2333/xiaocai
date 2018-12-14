@@ -32,7 +32,10 @@ static int cmd_c(char *args) {
   return 0;
 }
 
-static int cmd_si(char *args);
+static int cmd_si(char *args){
+  printf("%s\n",args);
+  return 0;
+}
 
 static int cmd_info(char *args){
   return 0;
@@ -61,10 +64,7 @@ static struct {
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
-static int cmd_si(char *args){
-  printf("%s\n",args );
-  return 0;
-}
+
 
 static int cmd_help(char *args) {
   /* extract the first argument */
