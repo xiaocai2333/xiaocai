@@ -33,7 +33,8 @@ static int cmd_c(char *args) {
 }
 
 static int cmd_si(char *args){
-  for(int k = 0; k < atoi(args); k++)
+  //for(int k = 0; k < atoi(args); k++)
+  printf("+%s\n", args);
     cpu_exec(1);
   return 0;
 }
