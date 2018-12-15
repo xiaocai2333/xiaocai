@@ -65,12 +65,13 @@ static int cmd_info(char *args){
 }
 
 static int cmd_p(char *args){
+  char *exp = strtok(NULL, " ");
+  printf("%s\n", exp);
   return 0;
 }
 
 static int cmd_q(char *args) {
-  char *exp = strtok(NULL, " ");
-  printf("%s\n", exp);
+
   return -1;
 }
 
