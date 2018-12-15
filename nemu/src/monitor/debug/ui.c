@@ -69,6 +69,8 @@ static int cmd_p(char *args){
 }
 
 static int cmd_q(char *args) {
+  char *exp = strtok(NULL, " ");
+  printf("%s\n", exp);
   return -1;
 }
 
