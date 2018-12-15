@@ -49,8 +49,18 @@ static int cmd_si(char *args){
 }
 
 static int cmd_info(char *args){
-  if(strcmp(args, "r") == 0)
-      printf("eax: %x\n",cpu.eax);
+  if(strcmp(args, "r") == 0){
+    printf("eax: %x\n",cpu.eax);
+    printf("ecx: %x\n",cpu.ecx);
+    printf("edx: %x\n",cpu.edx);
+    printf("ebx: %x\n",cpu.ebx);
+    printf("esp: %x\n",cpu.esp);
+    printf("ebp: %x\n",cpu.ebp);
+    printf("esi: %x\n",cpu.esi);
+    printf("edi: %x\n",cpu.edi);
+    printf("eip: %x\n",cpu.eip);
+  }
+      
   return 0;
 }
 
