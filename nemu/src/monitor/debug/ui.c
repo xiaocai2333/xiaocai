@@ -6,8 +6,11 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <string.h>
 
 void cpu_exec(uint64_t);
+
+//struct CPU_state regis;
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
@@ -47,7 +50,11 @@ static int cmd_si(char *args){
 
 static int cmd_info(char *args){
   if(strcmp(args, "r") == 0)
-    printf("rrrrrr");
+      printf("eax: %x\n",cpu.eax);
+  return 0;
+}
+
+static int cmd_p(char *args){
   return 0;
 }
 
@@ -67,6 +74,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si","Let the program execute N instructions step by step and then suspend execution.When N is not given, the default is 1", cmd_si},
   { "info","info r: Print register status; info w: Print Monitoring Point Information",cmd_info},
+  { "p","Find the value of the expression EXPR",cmd_p},
 
   /* TODO: Add more commands */
 
