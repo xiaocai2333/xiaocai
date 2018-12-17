@@ -68,11 +68,19 @@ static int cmd_p(char *args){
   char *exp = strtok(args, "+");
   int sum = 0;
   while(exp != NULL){
-    printf("%s\n", exp);
     sum = sum + atoi(exp);
     exp = strtok(NULL,"+");
   }
   printf("%d\n", sum);
+  return 0;
+}
+
+static int cmd_x(char *args){
+  int n,addr;
+  n = atoi(strtok(NULL, " "));
+  printf("%d\n", n);
+  addr = atoi(strtok(NULL, " "));
+  printf("%d\n", addr);
   return 0;
 }
 
@@ -94,6 +102,7 @@ static struct {
   { "si","Let the program execute N instructions step by step and then suspend execution.When N is not given, the default is 1", cmd_si},
   { "info","info r: Print register status; info w: Print Monitoring Point Information",cmd_info},
   { "p","Find the value of the expression EXPR",cmd_p},
+  { "x","Find the value of the expression EXPR and take the result as the starting point.Deposit Address, output N consecutive 4 words in hexadecimal form section", cmd_x},
 
   /* TODO: Add more commands */
 
