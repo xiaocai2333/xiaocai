@@ -66,10 +66,13 @@ static int cmd_info(char *args){
 
 static int cmd_p(char *args){
   char *exp = strtok(args, "+");
+  int sum = 0;
   while(exp != NULL){
     printf("%s\n", exp);
+    sum = sum + atoi(exp);
     exp = strtok(NULL,"+");
   }
+  printf("%s = %d\n", args, sum);
   return 0;
 }
 
