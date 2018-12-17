@@ -78,14 +78,16 @@ static int cmd_p(char *args){
 
 static int cmd_x(char *args){
   int n;
-  int addr;
+  
   char *p;
   n = atoi(strtok(NULL, " "));
-  printf("%d\n", n);
+  uint32_t addr;
   p = strtok(NULL, " ");
   sscanf(p,"%x",&addr);
-  printf("%x\n", addr);
-  paddr_read(addr,10);
+  for(int i = 0; i < n; i++){
+    paddr_read(addr,10);
+  }
+  
   return 0;
 }
 
