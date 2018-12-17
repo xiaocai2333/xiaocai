@@ -85,7 +85,7 @@ static int cmd_x(char *args){
   p = strtok(NULL, " ");
   sscanf(p,"%x",&addr);
   for(int i = 0; i < n; i++){
-    printf("0x%x\n", paddr_read(addr + i*4,4));
+    printf("%x\t0x%x\n", addr + i*4,paddr_read(addr + i*4,4));
   }
   
   return 0;
