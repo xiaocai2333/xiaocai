@@ -81,7 +81,7 @@ static int cmd_x(char *args){
   printf("%d\n", n);
   printf("%s\n", args);
   addr = atoi(strtok(NULL, " "));
-  printf("%d\n", addr);
+  printf("%x\n", addr);
   return 0;
 }
 
