@@ -76,11 +76,15 @@ static int cmd_p(char *args){
 }
 
 static int cmd_x(char *args){
-  int n,addr;
+  int n;
+  int addr;
+  char *p;
   n = atoi(strtok(NULL, " "));
   printf("%d\n", n);
   printf("%s\n", args);
-  addr = atoi(strtok(NULL, " "));
+  p = strtok(NULL, " ");
+  printf("%s\n", p);
+  sscanf(p,"%x",&addr);
   printf("%x\n", addr);
   return 0;
 }
