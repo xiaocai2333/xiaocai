@@ -10,6 +10,7 @@
 
 void cpu_exec(uint64_t);
 
+uint32_t paddr_read(paddr_t addr, int len);
 //struct CPU_state regis;
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
@@ -81,11 +82,10 @@ static int cmd_x(char *args){
   char *p;
   n = atoi(strtok(NULL, " "));
   printf("%d\n", n);
-  printf("%s\n", args);
   p = strtok(NULL, " ");
-  printf("%s\n", p);
   sscanf(p,"%x",&addr);
   printf("%x\n", addr);
+  paddr_read(addr,10);
   return 0;
 }
 
