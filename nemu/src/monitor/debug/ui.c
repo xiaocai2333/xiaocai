@@ -65,7 +65,7 @@ static int cmd_info(char *args){
 }
 
 static int cmd_p(char *args){
-  char string = *args;
+  char string = args[0];
   char *exp = strtok(args, "+");
   int sum = 0;
   while(exp != NULL){
