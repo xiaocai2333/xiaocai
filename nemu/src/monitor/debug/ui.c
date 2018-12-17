@@ -66,7 +66,9 @@ static int cmd_info(char *args){
 
 static int cmd_p(char *args){
   char *exp = strtok(NULL, " ");
-  printf("%s\n", exp);
+  while(exp){
+    printf("%s\n", exp);
+  }
   return 0;
 }
 
