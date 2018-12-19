@@ -145,17 +145,18 @@ bool check_parentheses(int p, int q){
 
   int BRA_NUM = 0;
 
-  for(int i = p; i <= q; i++){
-    if(strcmp(tokens[p].str,"(")){
+  if(strcmp(tokens[p].str,"(")){
       return false;
-    }
-    BRA_NUM++;
+  }
+  BRA_NUM++;
 
-    if(!strcmp(tokens[p].str,"(")){
+  for(int i = p + 1; i <= q; i++){
+    
+    if(!strcmp(tokens[i].str,"(")){
       BRA_NUM++;
     }
 
-    else if(!strcmp(tokens[p].str,")")){
+    else if(!strcmp(tokens[i].str,")")){
       BRA_NUM--;
       if((BRA_NUM <= 1) && (i != q)){
         return false;
