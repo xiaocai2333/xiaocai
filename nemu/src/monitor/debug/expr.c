@@ -90,6 +90,8 @@ static bool make_token(char *e) {
 
         memset((void *)(tokens[nr_token].str),0,sizeof(Token)*32);
         memcpy((void *)(tokens[nr_token].str),(void *)(e + position - substr_len),pmatch.rm_eo);
+
+        nr_token++;
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
