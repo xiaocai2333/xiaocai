@@ -126,7 +126,7 @@ uint32_t expr(char *e, bool *success) {
 
   else{
 
-    if(check_parentheses(0,nr_token-1)){
+    if(check_parentheses(0,nr_token)){
       printf("choumianyang\n");
     }
     for(int i = 0; i < nr_token; i++){
