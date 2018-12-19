@@ -10,7 +10,7 @@ enum {
   TK_NOTYPE = 256, 
  
 
-  TK_CONSTANT = 100,
+  TK_CONSTANT,
 
    TK_EQ,
 
