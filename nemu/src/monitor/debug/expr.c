@@ -7,7 +7,7 @@
 #include <regex.h>
 #include <stdlib.h>
 
-bool check_parentheses(int p, int q, char *e);
+bool check_parentheses(int p, int q);
 
 
 enum {
@@ -126,8 +126,8 @@ uint32_t expr(char *e, bool *success) {
 
   else{
 
-    if(check_parentheses(0,nr_token-1,e)){
-      printf("choumianyang");
+    if(check_parentheses(0,nr_token-1)){
+      printf("choumianyang\n");
     }
     for(int i = 0; i < nr_token; i++){
       printf("%d     %s\n", tokens[i].type,tokens[i].str);
@@ -141,21 +141,21 @@ uint32_t expr(char *e, bool *success) {
 
 
 
-bool check_parentheses(int p, int q, char *e){
+bool check_parentheses(int p, int q){
 
   int BRA_NUM = 0;
 
   for(int i = p; i <= q; i++){
-    if(e[p] != '('){
+    if(!strcmp(tokens[p].str,"(")){
       return false;
     }
     BRA_NUM++;
 
-    if(e[i] == '('){
+    if(strcmp(tokens[p].str,"(")){
       BRA_NUM++;
     }
 
-    else if(e[i] == ')'){
+    else if(strcmp(tokens[p].str,")")){
       BRA_NUM--;
     }
 
