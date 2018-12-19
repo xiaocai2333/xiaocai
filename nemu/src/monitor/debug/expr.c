@@ -126,7 +126,7 @@ uint32_t expr(char *e, bool *success) {
 
   else{
 
-    if(!check_parentheses(0,nr_token-1)){
+    if(check_parentheses(0,nr_token-1)){
       printf("choumianyang\n");
     }
     for(int i = 0; i < nr_token; i++){
@@ -146,16 +146,16 @@ bool check_parentheses(int p, int q){
   int BRA_NUM = 0;
 
   for(int i = p; i <= q; i++){
-    if(!strcmp(tokens[p].str,"(")){
+    if(strcmp(tokens[p].str,"(")){
       return false;
     }
     BRA_NUM++;
 
-    if(strcmp(tokens[p].str,"(")){
+    if(!strcmp(tokens[p].str,"(")){
       BRA_NUM++;
     }
 
-    else if(strcmp(tokens[p].str,")")){
+    else if(!strcmp(tokens[p].str,")")){
       BRA_NUM--;
     }
 
