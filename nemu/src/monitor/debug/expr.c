@@ -34,7 +34,7 @@ static struct rule {
   {"\\/", '/'},         //except
   {"\\(", '('},         //left brackets
   {"\\)", ')'},         //right brackets
-  {"[0-9]{0,}", TK_CONSTANT},
+  {"[0-9]+", TK_CONSTANT},
   {"==", TK_EQ}         // equal
 };
 
@@ -95,9 +95,9 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
 
-        switch (rules[i].token_type) {
+        /*switch (rules[i].token_type) {
           default: TODO();
-        }
+        }*/
 
         break;
       }
