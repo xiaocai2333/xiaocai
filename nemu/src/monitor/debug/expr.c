@@ -119,10 +119,91 @@ uint32_t expr(char *e, bool *success) {
   }
 
   else{
-    printf("choumianyang");
+    for(int i = 0; i < NR_REGEX; i++){
+      printf("%d     %s\n", tokens[i].type,tokens[i].str);
+    }
   }
   /* TODO: Insert codes to evaluate the expression. */
-  //TODO();
+  TODO();
 
   return 0;
 }
+
+
+/*
+check_parentheses(int *p, int *q){
+
+}
+
+
+eval(p,q){
+  if(p > q){
+    printf("This expression is Bad expression");
+  }
+  else if(p == q){
+    
+  }
+  else if(check_parentheses(p,q) == true){
+
+    return eval(p + 1, q - 1);
+  }
+  else{
+    //op = "the position of zhuyunsuanfu in the token expression;"
+    val1 = eval(p, op - 1);
+    val2 = eval(op + 1, q);
+
+    switch(op_type){
+      case '+': return val1 + val2;
+      case '-': return val1 - val2;
+      case '*': return val1 * val2;
+      case '/': return val1 / val2;
+    }
+  }
+
+}
+
+bool IsOperator(char ch)
+{
+  if(ch == "(" || ch == ")")
+    return true;
+  else
+    return false;
+}
+
+bool MatchBrackets(char *str){
+  stack<char> s;
+  assert(str);
+
+  while(*str != '\0'){
+    if(!IsOperator(*str)){
+      str++;
+      continue;
+    }
+    if(*str == '('){
+      s.push(*str);
+      str++;
+    }
+    else{
+      if(s.empty()){
+        printf("expression is Bad expression\n");
+        return false;
+      }
+      if(*str == ')' && s.top() == '('){
+        s.pop();
+        str++;
+      }
+      else{
+        printf("expression is Bad expression\n");
+        return false;
+      }
+    }
+  }
+  if(!s.empty()){
+    printf("expression is Bad expression\n");
+    retrun false;
+  }
+  else{
+    printf("expression is GOOD expression\n");
+    return true;
+  }
+}*/
