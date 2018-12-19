@@ -157,11 +157,12 @@ bool check_parentheses(int p, int q){
 
     else if(!strcmp(tokens[p].str,")")){
       BRA_NUM--;
+      if((BRA_NUM <= 1) && (i != q)){
+        return false;
+      }
     }
 
-    if((BRA_NUM <= 1) && (i != q)){
-      return false;
-    }
+    
 
   }
   return true;
