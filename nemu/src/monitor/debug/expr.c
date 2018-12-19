@@ -34,7 +34,7 @@ static struct rule {
   {"\\/", '/'},         //except
   {"\\(", '('},         //left brackets
   {"\\)", ')'},         //right brackets
-  {"[0-9]+", TK_CONSTANT},
+  {"[0-9]{0,", TK_CONSTANT},
   {"==", TK_EQ}         // equal
 };
 
@@ -119,7 +119,7 @@ uint32_t expr(char *e, bool *success) {
   }
 
   else{
-    printf("choumiangyang");
+    printf("choumianyang");
   }
   /* TODO: Insert codes to evaluate the expression. */
   TODO();
