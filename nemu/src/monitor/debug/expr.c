@@ -5,6 +5,10 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <stdlib.h>
+
+bool check_parentheses(int p, int q, char *e);
+
 
 enum {
   TK_NOTYPE = 256, 
@@ -121,6 +125,10 @@ uint32_t expr(char *e, bool *success) {
   }
 
   else{
+
+    if(check_parentheses(0,nr_token-1,e)){
+      printf("choumianyang");
+    }
     for(int i = 0; i < nr_token; i++){
       printf("%d     %s\n", tokens[i].type,tokens[i].str);
     }
@@ -132,12 +140,34 @@ uint32_t expr(char *e, bool *success) {
 }
 
 
-/*
-check_parentheses(int *p, int *q){
 
+bool check_parentheses(int p, int q, char *e){
+
+  int BRA_NUM = 0;
+
+  for(int i = p; i <= q; i++){
+    if(e[p] != '('){
+      return false;
+    }
+    BRA_NUM++;
+
+    if(e[i] == '('){
+      BRA_NUM++;
+    }
+
+    else if(e[i] == ')'){
+      BRA_NUM--;
+    }
+
+    if((BRA_NUM <= 1) && (i != q)){
+      return false;
+    }
+
+  }
+  return true;
 }
 
-
+/*
 eval(p,q){
   if(p > q){
     printf("This expression is Bad expression");
@@ -163,49 +193,4 @@ eval(p,q){
   }
 
 }
-
-bool IsOperator(char ch)
-{
-  if(ch == "(" || ch == ")")
-    return true;
-  else
-    return false;
-}
-
-bool MatchBrackets(char *str){
-  stack<char> s;
-  assert(str);
-
-  while(*str != '\0'){
-    if(!IsOperator(*str)){
-      str++;
-      continue;
-    }
-    if(*str == '('){
-      s.push(*str);
-      str++;
-    }
-    else{
-      if(s.empty()){
-        printf("expression is Bad expression\n");
-        return false;
-      }
-      if(*str == ')' && s.top() == '('){
-        s.pop();
-        str++;
-      }
-      else{
-        printf("expression is Bad expression\n");
-        return false;
-      }
-    }
-  }
-  if(!s.empty()){
-    printf("expression is Bad expression\n");
-    retrun false;
-  }
-  else{
-    printf("expression is GOOD expression\n");
-    return true;
-  }
-}*/
+*/
