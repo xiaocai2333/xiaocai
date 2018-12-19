@@ -66,13 +66,9 @@ static int cmd_info(char *args){
 }
 
 static int cmd_p(char *args){
-  char *exp = strtok(args, "+");
-  int sum = 0;
-  while(exp != NULL){
-    sum = sum + atoi(exp);
-    exp = strtok(NULL,"+");
-  }
-  printf("%d\n", sum);
+  bool b = true;
+  bool *a = &b;
+  expr(args,a);
   return 0;
 }
 

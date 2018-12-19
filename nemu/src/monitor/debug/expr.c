@@ -85,6 +85,7 @@ static bool make_token(char *e) {
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
         position += substr_len;
 
+        assert(pmatch.rm_eo < 32);
         tokens[nr_token].type = rules[i].token_type;
 
         memset((void *)(tokens[nr_token].str),0,sizeof(Token)*32);
@@ -117,6 +118,9 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
 
+  else{
+    printf("choumiangyang");
+  }
   /* TODO: Insert codes to evaluate the expression. */
   TODO();
 
