@@ -34,7 +34,7 @@ static struct rule {
   {"\\/", '/'},         //except
   {"\\(", '('},         //left brackets
   {"\\)", ')'},         //right brackets
-  {"[0-9]{0,", TK_CONSTANT},
+  {"[0-9]{0,}", TK_CONSTANT},
   {"==", TK_EQ}         // equal
 };
 
