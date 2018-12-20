@@ -24,7 +24,7 @@ enum {
   TK_MODE = 105,
 
   TK_DEX = 10,
-  TK_HEX = 16,
+  //TK_HEX = 16,
 
    TK_EQ,
 
@@ -51,7 +51,7 @@ static struct rule {
   {"\\(", '('},         //left brackets
   {"\\)", ')'},         //right brackets
   {"[0-9]+", TK_DEX},
-  {"0x6", TK_HEX},
+ // {"0x6", TK_HEX},
   {"==", TK_EQ}         // equal
 };
 
@@ -211,7 +211,7 @@ int eval(int p, int q){
   else{
 
     op = OP_CET(p,q);
-
+    printf("%d\n", op);
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
