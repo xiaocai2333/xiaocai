@@ -200,7 +200,7 @@ int eval(int p, int q){
     return 0;
   }
   else if(p == q){
-    if(tokens[p].type != 10 && tokens[p].type != 16){
+    if(tokens[p].type != 10 && tokens[p].type != 16 && tokens[p].type != 200){
       //*success = false;
       return 0;
     }
