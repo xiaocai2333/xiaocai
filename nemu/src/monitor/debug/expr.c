@@ -134,10 +134,7 @@ uint32_t expr(char *e, bool *success) {
   }
 
   else{
-
-    if(check_parentheses(0,nr_token - 1)){
-      printf("%d\n",eval(0,nr_token - 1));
-    }
+    printf("%d\n",eval(0,nr_token - 1));
     for(int i = 0; i < nr_token; i++){
       printf("%d     %s\n", tokens[i].type,tokens[i].str);
     }
