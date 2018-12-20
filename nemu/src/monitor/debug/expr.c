@@ -51,7 +51,7 @@ static struct rule {
   {"\\(", '('},         //left brackets
   {"\\)", ')'},         //right brackets
   {"[0-9]+", TK_DEX},
-  {"0[xX][0-9a-fA-F]+",TK_HEX},
+  {"(0[xX])?([0-9a-fA-F]+)",TK_HEX},
   {"==", TK_EQ}         // equal
 };
 
