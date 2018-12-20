@@ -16,6 +16,8 @@ bool IsOPERTRUE(int p, int q);
 
 enum {
   TK_NOTYPE = 256, 
+  TK_NEG = 99,
+
   TK_QADDR = 100,
   TK_PLUS = 101,
   TK_REDUCE = 102,
@@ -44,6 +46,7 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
+  {"-[0-9]+", TK_NEG},
   {"\\&", TK_QADDR},
   {"\\+", TK_PLUS},         // plus
   {"\\-", TK_REDUCE},         //reduce
@@ -200,12 +203,12 @@ int eval(int p, int q){
     return 0;
   }
   else if(p == q){
-    if(tokens[p].type != 10 && tokens[p].type != 16 && tokens[p].type != 200){
+    if(tokens[p].type != 10 && tokens[p].type != 16 && tokens[p].type != 200 && tokens[p].type != 99){
       //*success = false;
       return 0;
     }
     else{
-      if(tokens[p].type == 10){
+      if(tokens[p].type == 10 || tokens[p].type == 99){
         return atoi(tokens[p].str);
       }
       else if(tokens[p].type == 16){
