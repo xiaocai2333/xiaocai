@@ -12,6 +12,7 @@ int eval(int p, int q);
 int OP_CET(int p,int q);
 int COMPARE_OPERATOR(int ope1, int ope2);
 bool IsOPerINBRA(int p, int j);
+bool IsOPERTRUE(int p, int q);
 
 enum {
   TK_NOTYPE = 256, 
@@ -137,11 +138,14 @@ uint32_t expr(char *e, bool *success) {
 
   else{
     printf("%d\n", nr_token);
-    for(int i = 0; i < nr_token; i++){
-      printf("%s     %d\n", tokens[i].str, tokens[i].type);
+    if(IsOPERTRUE(0,nr_token)){
+      sum = eval(0,nr_token - 1);
+      printf("result = %d\n", sum);
     }
-    sum = eval(0,nr_token - 1);
-    printf("result = %d\n", sum);
+    else{
+      printf("This expression is Bad expression\n");
+      return 0;
+    }
   }
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
@@ -172,9 +176,6 @@ bool check_parentheses(int p, int q){
         return false;
       }
     }
-
-    
-
   }
   return true;
 }
@@ -273,7 +274,7 @@ int COMPARE_OPERATOR(int ope1, int ope2){
 }
 
 
-bool IsOPerINBRA(int p, int j){
+bool IsOPERINBRA(int p, int j){
   int flag = 0;
   for(int i = j; i >= p; i--){
     if(!strcmp(tokens[i].str,"(")){
@@ -286,5 +287,23 @@ bool IsOPerINBRA(int p, int j){
       return false;
     }
   }
+  return true;
+}
+
+bool IsOPERTRUE(int p, int q){
+  int flag = 0;
+  for(int i = p; i < q; i++){
+    if(!strcmp(tokens[i].str,"(")){
+      flag++;
+    }
+    else if(!strcmp(tokens[i].str,"(")){
+      flag--;
+    }
+    if(flag < 0){
+      return false;
+    }
+  }
+  if(flag > 0)
+    return false;
   return true;
 }
