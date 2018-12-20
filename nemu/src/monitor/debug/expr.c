@@ -178,7 +178,7 @@ int eval(int p, int q){
   int val1, val2;
   if(p > q){
     //*success = false;
-    printf("This expression is Bad expression");
+    printf("This expression is Bad expression\n");
     return 0;
   }
   else if(p == q){
@@ -191,6 +191,7 @@ int eval(int p, int q){
     }
   }
   else if(check_parentheses(p,q) == true){
+    printf("112233334\n");
 
     return eval(p + 1, q - 1);
   }
@@ -209,7 +210,6 @@ int eval(int p, int q){
       default: return 0;
     }
   }
-  return 0;
 }
 
 int OP_CET(int p){
