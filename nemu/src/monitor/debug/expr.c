@@ -192,11 +192,13 @@ int eval(int p, int q){
   }
   else if(check_parentheses(p,q) == true){
     printf("112233334\n");
-
-    return eval(p + 1, q - 1);
+    p = p + 1;
+    q = q - 1;
+    return eval(p, q);
   }
   else{
     op = OP_CET(p);
+    printf("%s\n", tokens[op].str);
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
