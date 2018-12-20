@@ -23,7 +23,8 @@ enum {
   TK_EXCEPT = 104,
   TK_MODE = 105,
 
-  TK_CONSTANT = 666,
+  TK_DEX = 10,
+  TK_HEX = 16,
 
    TK_EQ,
 
@@ -49,7 +50,8 @@ static struct rule {
   {"\\%", TK_MODE},
   {"\\(", '('},         //left brackets
   {"\\)", ')'},         //right brackets
-  {"[0-9]+", TK_CONSTANT},
+  {"[0-9]+", TK_DEX},
+  {"0x|X[0-9]|[a-f]|[A-F]+",TK_HEX},
   {"==", TK_EQ}         // equal
 };
 
@@ -183,17 +185,24 @@ bool check_parentheses(int p, int q){
 int eval(int p, int q){
   int op;
   int val1, val2;;
+  int h_num = 0;
   if(p > q){
     printf("This expression is Bad expression\n");
     return 0;
   }
   else if(p == q){
-    if(tokens[p].type != 666){
+    if(tokens[p].type != 10 || tokens[p].type != 16){
       //*success = false;
       return 0;
     }
     else{
-      return atoi(tokens[p].str);
+      if(tokens[p].type == 10){
+        return atoi(tokens[p].str);
+      }
+      else{
+        sscanf(tokens[p].str, "%x", &h_num);
+        return h_num;
+      }
     }
   }
   else if(check_parentheses(p,q) == true){
