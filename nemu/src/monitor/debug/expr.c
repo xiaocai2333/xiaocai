@@ -288,7 +288,7 @@ int COMPARE_OPERATOR(int ope1, int ope2){
 
 bool IsOPerINBRA(int p, int q, int j){
   int flag = 0;
-  for(int i = q; i >= p; i--){
+  for(int i = j; i >= p; i--){
     if(!strcmp(tokens[i].str,"(")){
       flag++;
     }
