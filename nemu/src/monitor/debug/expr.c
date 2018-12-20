@@ -135,6 +135,7 @@ uint32_t expr(char *e, bool *success) {
   }
 
   else{
+    printf("%d\n", nr_token);
     for(int i = 0; i < nr_token; i++){
       printf("%s\n", tokens[i].str);
     }
