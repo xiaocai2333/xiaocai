@@ -11,7 +11,7 @@ bool check_parentheses(int p, int q);
 int eval(int p, int q);
 int OP_CET(int p,int q);
 int COMPARE_OPERATOR(int ope1, int ope2);
-bool IsOPerINBRA(int p, int q, int i);
+bool IsOPerINBRA(int p, int j);
 
 enum {
   TK_NOTYPE = 256, 
@@ -234,7 +234,7 @@ int OP_CET(int p, int q){
 
   for(int i = p; i <= q; i++){
     if(tokens[i].type >= 100 && tokens[i].type <= 105){
-      if(IsOPerINBRA(p, q, i)){
+      if(IsOPerINBRA(p, i)){
         printf("k = %d\n", k);
         printf("i = %d\n", i);
         oper[k] = i;
@@ -286,7 +286,7 @@ int COMPARE_OPERATOR(int ope1, int ope2){
 }
 
 
-bool IsOPerINBRA(int p, int q, int j){
+bool IsOPerINBRA(int p, int j){
   int flag = 0;
   for(int i = j; i >= p; i--){
     if(!strcmp(tokens[i].str,"(")){
