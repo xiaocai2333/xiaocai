@@ -11,7 +11,7 @@ bool check_parentheses(int p, int q);
 int eval(int p, int q);
 int OP_CET(int p,int q);
 int COMPARE_OPERATOR(int ope1, int ope2);
-bool IsOPerINBRA(int p, int j);
+bool IsOPERINBRA(int p, int j);
 bool IsOPERTRUE(int p, int q);
 
 enum {
@@ -225,7 +225,7 @@ int OP_CET(int p, int q){
 
   for(int i = p; i <= q; i++){
     if(tokens[i].type >= 100 && tokens[i].type <= 105){
-      if(IsOPerINBRA(p, i)){
+      if(IsOPERINBRA(p, i)){
         oper[k] = i;
         k++;
       }
