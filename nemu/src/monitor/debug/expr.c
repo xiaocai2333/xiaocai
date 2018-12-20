@@ -229,6 +229,9 @@ int eval(int p, int q){
 int OP_CET(int p, int q){
   int k = 0;
   int oper[nr_token];
+  int x = 0;
+  x++;
+  printf("%d\n", x);
   for(int i = p; i <= q; i++){
     if(tokens[i].type >= 100 && tokens[i].type <= 105){
       if(IsOPerINBRA(i)){
@@ -245,10 +248,6 @@ int OP_CET(int p, int q){
     if(COMPARE_OPERATOR(oper[0],oper[j]) != -1){
       oper[0] = oper[j];
     }
-  }
-
-  for(int x = 0; x <= k; x++){
-    printf("%d\n", oper[x]);
   }
   return oper[0];
 }
