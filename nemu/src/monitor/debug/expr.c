@@ -201,7 +201,7 @@ int eval(int p, int q){
     p = p + 1;
     q = q - 1;
     printf("p = %d, q = %d\n", p, q);
-    return 0;
+    //return 0;
     return eval(p, q);
   }
   else{
@@ -228,9 +228,8 @@ int eval(int p, int q){
 
 int OP_CET(int p, int q){
   int k = 0;
-  int p1 = 0;
   int oper[nr_token];
-  for(int i = p; i < q; i++){
+  for(int i = p; i <= q; i++){
     if(tokens[i].type >= 100 && tokens[i].type <= 105){
       if(IsOPerINBRA(i)){
         oper[k] = i;
@@ -243,11 +242,15 @@ int OP_CET(int p, int q){
     return oper[0];
   }
   for(int j = 1; j < k; j++){
-    if(COMPARE_OPERATOR(oper[p1],oper[j]) != -1){
-      oper[p1] = oper[j];
+    if(COMPARE_OPERATOR(oper[0],oper[j]) != -1){
+      oper[0] = oper[j];
     }
   }
-  return oper[p1];
+
+  for(int x = 0; x <= k; x++){
+    printf("%d\n", oper[x]);
+  }
+  return oper[0];
 }
 
 
