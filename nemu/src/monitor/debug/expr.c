@@ -178,6 +178,7 @@ bool check_parentheses(int p, int q){
 int eval(int p, int q){
   int op;
   int val1, val2;
+  printf("%d\n", p);
   if(p > q){
     //*success = false;
     printf("This expression is Bad expression\n");
