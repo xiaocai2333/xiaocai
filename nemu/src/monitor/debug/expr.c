@@ -185,8 +185,9 @@ int eval(int p, int q){
     return 0;
   }
   else if(p == q){
-    if(tokens[p].type != 257){
+    if(tokens[p].type != 666){
       //*success = false;
+      return 0;
     }
     else{
       return atoi(tokens[p].str);
@@ -223,6 +224,7 @@ int OP_CET(int p){
       q = i;
       break;
     }  
+    q = i;
   }
   for(int j = p; j < q; j++){
     if(tokens[j].type >= 100 && tokens[j].type <= 105){
