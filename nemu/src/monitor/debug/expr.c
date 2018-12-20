@@ -228,6 +228,7 @@ int OP_CET(int p){
   for(int j = p; j < q; j++){
     if(tokens[j].type >= 100 && tokens[j].type <= 105){
       num++;
+      printf("%d\n", j);
       if(num == 1){
         p1 = j;
       }
