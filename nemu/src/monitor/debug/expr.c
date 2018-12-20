@@ -231,6 +231,9 @@ int OP_CET(int p, int q){
       }
     }
   }
+  if(k == 1){
+    return oper[0];
+  }
   for(int j = 1; j < k; j++){
     if(COMPARE_OPERATOR(oper[p1],oper[j]) != -1){
       oper[p1] = oper[j];
