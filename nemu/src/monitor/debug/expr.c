@@ -192,13 +192,12 @@ int eval(int p, int q){
     return 0;
   }
   else if(p == q){
-    if(tokens[p].type != 10){
+    if(tokens[p].type != 10 && tokens[p].type != 16){
       //*success = false;
       return 0;
     }
     else{
       if(tokens[p].type == 10){
-        printf("22222\n");
         return atoi(tokens[p].str);
       }
       else{
