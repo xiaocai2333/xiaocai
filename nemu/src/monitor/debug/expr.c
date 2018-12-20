@@ -143,10 +143,15 @@ uint32_t expr(char *e, bool *success) {
   }
 
   else{
+    for (int i = 0; i < nr_token; ++i)
+    {
+      printf("%s\n", tokens[i].str);
+    }
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
       printf("result = %d\n", sum);
     }
+
     else{
       printf("This expression is Bad expression\n");
       return 0;
