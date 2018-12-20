@@ -209,6 +209,7 @@ int eval(int p, int q){
       }
       else if(tokens[p].type == 200){
         if(!strcmp(tokens[p].str, "$eax")){
+          printf("%x\n", cpu.eax);
           return cpu.eax;
         }
         else if(!strcmp(tokens[p].str, "$ecx")){
