@@ -9,7 +9,7 @@
 
 bool check_parentheses(int p, int q);
 int eval(int p, int q);
-int OP_CET(int p);
+int OP_CET(int p,int q);
 int COMPARE_OPERATOR(int ope1, int ope2);
 
 enum {
@@ -184,7 +184,6 @@ int eval(int p, int q){
   int val1, val2;;
   printf("%d\n", p);
   if(p > q){
-    //*success = false;
     printf("This expression is Bad expression\n");
     return 0;
   }
@@ -199,12 +198,10 @@ int eval(int p, int q){
   }
   else if(check_parentheses(p,q) == true){
     printf("112233334\n");
-    p = p + 1;
-    q = q - 1;
-    return eval(p, q);
+    return eval(p + 1, q - 1);
   }
   else{
-    op = OP_CET(p);
+    op = OP_CET(p,q);
     printf("str =  %s\n", tokens[op].str);
     printf("p = %d\n", p);
     val1 = eval(p, op - 1);
@@ -222,18 +219,18 @@ int eval(int p, int q){
   }
 }
 
-int OP_CET(int p){
-  int q = 0;
+int OP_CET(int p, int q){
+  int k = 0;
   int p1 = 0;
   int num = 0;
-  for(int i = p; i < nr_token; i++){
+  for(int i = p; i < q; i++){
     if(strcmp(tokens[i].str, "(")){
-      q = i;
+      k = i;
       break;
     }  
-    q = i;
+    k = i;
   }
-  for(int j = p; j <= q; j++){
+  for(int j = p; j <= k; j++){
     if(tokens[j].type >= 100 && tokens[j].type <= 105){
       num++;
       printf("j = %d\n", j);
