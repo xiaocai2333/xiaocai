@@ -209,9 +209,7 @@ int eval(int p, int q){
     op = OP_CET(p,q);
     printf("str =  %s\n", tokens[op].str);
     printf("op = %d\n", op);
-    if(p == 1){
-      return 0;
-    }
+
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
