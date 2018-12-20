@@ -223,7 +223,7 @@ int OP_CET(int p, int q){
   int k = 0;
   int p1 = 0;
   int num = 0;
-  for(int i = p; i < q; i++){
+  for(int i = p; i <= q; i++){
     if(strcmp(tokens[i].str, "(")){
       k = i;
       break;
