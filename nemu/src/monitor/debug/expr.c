@@ -137,7 +137,6 @@ uint32_t expr(char *e, bool *success) {
   }
 
   else{
-    printf("%d\n", nr_token);
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
       printf("result = %d\n", sum);
