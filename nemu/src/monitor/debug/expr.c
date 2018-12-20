@@ -225,11 +225,10 @@ int eval(int p, int q){
     }
   }
 }
-
+int x = 0;
 int OP_CET(int p, int q){
   int k = 0;
   int oper[nr_token];
-  int x = 0;
   x++;
   printf("%d\n", x);
   for(int i = p; i <= q; i++){
