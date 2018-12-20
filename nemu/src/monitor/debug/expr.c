@@ -198,7 +198,6 @@ int eval(int p, int q){
   }
   else if(check_parentheses(p,q) == true){
     printf("p = %d, q = %d\n", p, q);
-    return 0;
     return eval(p + 1, q - 1);
   }
   else{
@@ -208,7 +207,7 @@ int eval(int p, int q){
     printf("op = %d\n", op);
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
-
+    printf("val1 = %d, val2 = %d\n", val1, val2);
     switch(tokens[op].type){
       case 101: return val1 + val2;
       case 102: return val1 - val2;
