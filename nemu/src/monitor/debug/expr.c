@@ -12,9 +12,13 @@ bool check_parentheses(int p, int q);
 
 enum {
   TK_NOTYPE = 256, 
- 
+  TK_QADDR = 100,
+  TK_PLUS = 101,
+  TK_REDUCE = 102,
+  TK_RIDE = 103,
+  TK_EXCEPT = 104,
 
-  TK_CONSTANT,
+  TK_CONSTANT = 666,
 
    TK_EQ,
 
@@ -32,10 +36,11 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
-  {"\\-", '-'},         //reduce
-  {"\\*", '*'},         //ride
-  {"\\/", '/'},         //except
+  {"\\&", TK_QADDR},
+  {"\\+", TK_PLUS},         // plus
+  {"\\-", TK_REDUCE},         //reduce
+  {"\\*", TK_RIDE},         //ride
+  {"\\/", TK_EXCEPT},         //except
   {"\\(", '('},         //left brackets
   {"\\)", ')'},         //right brackets
   {"[0-9]+", TK_CONSTANT},
