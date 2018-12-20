@@ -233,7 +233,7 @@ int OP_CET(int p){
     }  
     q = i;
   }
-  for(int j = p; j < q; j++){
+  for(int j = p; j <= q; j++){
     if(tokens[j].type >= 100 && tokens[j].type <= 105){
       num++;
       printf("j = %d\n", j);
@@ -257,6 +257,7 @@ int COMPARE_OPERATOR(int ope1, int ope2){
       return 1;
     return 0;
   }
+
   else if(!(strcmp(tokens[ope1].str,"/")) || !(strcmp(tokens[ope1].str, "*")) || !(strcmp(tokens[ope1].str, "%"))){
     if(!(strcmp(tokens[ope2].str, "&"))){
       return -1;
@@ -266,6 +267,7 @@ int COMPARE_OPERATOR(int ope1, int ope2){
    }
    return 1;
   } 
+
   else if(!(strcmp(tokens[ope1].str,"+")) || !(strcmp(tokens[ope1].str, "-"))){
     if(!(strcmp(tokens[ope2].str,"/")) || !(strcmp(tokens[ope2].str, "*")) || !(strcmp(tokens[ope2].str, "%")) || !(strcmp(tokens[ope2].str,"&"))){
       return -1;
