@@ -232,6 +232,7 @@ int OP_CET(int p, int q){
       }
     }
   }
+  printf("%d\n", oper[0]);
   if(k == 1){
     return oper[0];
   }
