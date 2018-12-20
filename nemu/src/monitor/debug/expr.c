@@ -292,11 +292,11 @@ bool IsOPERINBRA(int p, int j){
 
 bool IsOPERTRUE(int p, int q){
   int flag = 0;
-  for(int i = p; i < q; i++){
+  for(int i = p; i <= q; i++){
     if(!strcmp(tokens[i].str,"(")){
       flag++;
     }
-    else if(!strcmp(tokens[i].str,"(")){
+    else if(!strcmp(tokens[i].str,")")){
       flag--;
     }
     if(flag < 0){
