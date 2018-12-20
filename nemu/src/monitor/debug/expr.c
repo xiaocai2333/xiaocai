@@ -8,7 +8,9 @@
 #include <stdlib.h>
 
 bool check_parentheses(int p, int q);
-
+int eval(int p, int q);
+int OP_CET(int p);
+int COMPARE_OPERATOR(int ope1, int ope2);
 
 enum {
   TK_NOTYPE = 256, 
@@ -17,6 +19,7 @@ enum {
   TK_REDUCE = 102,
   TK_RIDE = 103,
   TK_EXCEPT = 104,
+  TK_MODE = 105,
 
   TK_CONSTANT = 666,
 
@@ -41,6 +44,7 @@ static struct rule {
   {"\\-", TK_REDUCE},         //reduce
   {"\\*", TK_RIDE},         //ride
   {"\\/", TK_EXCEPT},         //except
+  {"\\%", TK_MODE},
   {"\\(", '('},         //left brackets
   {"\\)", ')'},         //right brackets
   {"[0-9]+", TK_CONSTANT},
@@ -131,8 +135,8 @@ uint32_t expr(char *e, bool *success) {
 
   else{
 
-    if(check_parentheses(0,nr_token-1)){
-      printf("choumianyang\n");
+    if(check_parentheses(0,nr_token - 1)){
+      printf("%d\n",eval(0,nr_token - 1));
     }
     for(int i = 0; i < nr_token; i++){
       printf("%d     %s\n", tokens[i].type,tokens[i].str);
@@ -174,18 +178,21 @@ bool check_parentheses(int p, int q){
   return true;
 }
 
-/*
+
 int eval(int p, int q){
+  int op;
+  int val1, val2;
   if(p > q){
-    *success = false;
+    //*success = false;
     printf("This expression is Bad expression");
+    return 0;
   }
   else if(p == q){
     if(tokens[p].type != 257){
-      *success = false;
+      //*success = false;
     }
     else{
-      return tokens[p].str;
+      return atoi(tokens[p].str);
     }
   }
   else if(check_parentheses(p,q) == true){
@@ -193,28 +200,46 @@ int eval(int p, int q){
     return eval(p + 1, q - 1);
   }
   else{
-    //op = "the position of zhuyunsuanfu in the token expression;"
+    op = OP_CET(p);
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
-    switch(op_type){
-      case '+': return val1 + val2;
-      case '-': return val1 - val2;
-      case '*': return val1 * val2;
-      case '/': return val1 / val2;
+    switch(tokens[op].type){
+      case 101: return val1 + val2;
+      case 102: return val1 - val2;
+      case 103: return val1 * val2;
+      case 104: return val1 / val2;
+      case 105: return val1 % val2;
+
+      default: return 0;
     }
   }
-
+  return 0;
 }
 
 int OP_CET(int p){
-  int q;
+  int q = 0;
+  int p1 = 0;
+  int num = 0;
   for(int i = p; i < nr_token; i++){
     if(strcmp(tokens[i].str, "(")){
       q = i;
       break;
     }  
   }
+  for(int j = p; j < q; j++){
+    if(tokens[j].type >= 100 && tokens[j].type <= 105){
+      num++;
+      if(num == 1){
+        p1 = j;
+      }
+      else{
+        if(COMPARE_OPERATOR(p1,j) != -1)
+          p1 = j;
+      }
+    }
+  }
+  return p1;
 }
 
 
@@ -222,7 +247,7 @@ int OP_CET(int p){
 int COMPARE_OPERATOR(int ope1, int ope2){
   if(!strcmp(tokens[ope1].str,"&")){
     if(strcmp(tokens[ope2].str,"&"))
-      retrun 1;
+      return 1;
     return 0;
   }
   else if(!(strcmp(tokens[ope1].str,"/")) || !(strcmp(tokens[ope1].str, "*")) || !(strcmp(tokens[ope1].str, "%"))){
@@ -243,6 +268,5 @@ int COMPARE_OPERATOR(int ope1, int ope2){
     }
     return 1;
   }
+  return 1;
 }
-
-*/
