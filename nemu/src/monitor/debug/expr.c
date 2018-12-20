@@ -26,6 +26,8 @@ enum {
   TK_DEX = 10,
   TK_HEX = 16,
 
+  TK_REG = 200,
+
    TK_EQ,
 
   /* TODO: Add more token types */
@@ -52,6 +54,7 @@ static struct rule {
   {"\\)", ')'},         //right brackets
   {"0(x|X)([0-9a-fA-F])+", TK_HEX},
   {"[0-9]+", TK_DEX},
+  {"$[a-zA-Z]+", TK_REG},
 
   {"==", TK_EQ}         // equal
 };
@@ -200,11 +203,44 @@ int eval(int p, int q){
       if(tokens[p].type == 10){
         return atoi(tokens[p].str);
       }
-      else{
+      else if(tokens[p].type == 16){
         sscanf(tokens[p].str, "%x", &h_num);
         return h_num;
       }
+      else if(tokens[p].type == 200){
+        if(!strcmp(tokens[p].str, "$eax")){
+          return cpu.eax;
+        }
+        else if(!strcmp(tokens[p].str, "$ecx")){
+          return cpu.ecx;
+        }
+        else if(!strcmp(tokens[p].str, "$edx")){
+          return cpu.edx;
+        }
+        else if(!strcmp(tokens[p].str, "$ebx")){
+          return cpu.ebx;
+        }
+        else if(!strcmp(tokens[p].str, "$esp")){
+          return cpu.esp;
+        }
+        else if(!strcmp(tokens[p].str, "$ebp")){
+          return cpu.ebp;
+        }
+        else if(!strcmp(tokens[p].str, "$eip")){
+          return cpu.eip;
+        }
+        else if(!strcmp(tokens[p].str, "$esi")){
+          return cpu.esi;
+        }
+        else if(!strcmp(tokens[p].str, "$edi")){
+          return cpu.edi;
+        }
+        else{
+          return 0;
+        }
+      }
     }
+    return 0;
   }
   else if(check_parentheses(p,q) == true){
     return eval(p + 1, q - 1);
