@@ -197,23 +197,15 @@ int eval(int p, int q){
     }
   }
   else if(check_parentheses(p,q) == true){
-    
-    p = p + 1;
-    q = q - 1;
-    printf("p = %d, q = %d\n", p, q);
-    //return 0;
-    return eval(p, q);
+    return eval(p + 1, q - 1);
   }
   else{
-    printf("p = %d , q = %d\n", p, q);
+
     op = OP_CET(p,q);
-    printf("str =  %s\n", tokens[op].str);
-    printf("op = %d\n", op);
 
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
-    printf("val1 = %d, val2 = %d\n", val1, val2);
     switch(tokens[op].type){
       case 101: return val1 + val2;
       case 102: return val1 - val2;
@@ -233,14 +225,11 @@ int OP_CET(int p, int q){
   for(int i = p; i <= q; i++){
     if(tokens[i].type >= 100 && tokens[i].type <= 105){
       if(IsOPerINBRA(p, i)){
-        printf("k = %d\n", k);
-        printf("i = %d\n", i);
         oper[k] = i;
         k++;
       }
     }
   }
-  printf("oper = %d\n", oper[0]);
   if(k == 1){
     return oper[0];
   }
