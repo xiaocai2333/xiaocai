@@ -128,7 +128,7 @@ static bool make_token(char *e) {
 }
 
 uint32_t expr(char *e, bool *success) {
-  //int sum = 0;
+  int sum = 0;
   if (!make_token(e)) {
     *success = false;
     return 0;
@@ -139,8 +139,8 @@ uint32_t expr(char *e, bool *success) {
     for(int i = 0; i < nr_token; i++){
       printf("%s\n", tokens[i].str);
     }
-    //sum = eval(0,nr_token - 1);
-    //printf("%d\n", sum);
+    sum = eval(0,nr_token - 1);
+    printf("%d\n", sum);
   }
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
@@ -181,7 +181,7 @@ bool check_parentheses(int p, int q){
 
 int eval(int p, int q){
   int op;
-  int val1, val2;
+  int val1, val2;;
   printf("%d\n", p);
   if(p > q){
     //*success = false;
@@ -205,8 +205,8 @@ int eval(int p, int q){
   }
   else{
     op = OP_CET(p);
-    printf("%s\n", tokens[op].str);
-    printf("%d\n", p);
+    printf("str =  %s\n", tokens[op].str);
+    printf("p = %d\n", p);
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
@@ -236,7 +236,7 @@ int OP_CET(int p){
   for(int j = p; j < q; j++){
     if(tokens[j].type >= 100 && tokens[j].type <= 105){
       num++;
-      printf("%d\n", j);
+      printf("j = %d\n", j);
       if(num == 1){
         p1 = j;
       }
