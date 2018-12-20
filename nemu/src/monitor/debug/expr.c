@@ -170,12 +170,18 @@ bool check_parentheses(int p, int q){
 }
 
 /*
-eval(p,q){
+int eval(int p, int q){
   if(p > q){
+    *success = false;
     printf("This expression is Bad expression");
   }
   else if(p == q){
-    
+    if(tokens[p].type != 257){
+      *success = false;
+    }
+    else{
+      return tokens[p].str;
+    }
   }
   else if(check_parentheses(p,q) == true){
 
@@ -195,4 +201,43 @@ eval(p,q){
   }
 
 }
+
+int OP_CET(int p){
+  int q;
+  for(int i = p; i < nr_token; i++){
+    if(strcmp(tokens[i].str, "(")){
+      q = i;
+      break;
+    }  
+  }
+}
+
+
+
+int COMPARE_OPERATOR(int ope1, int ope2){
+  if(!strcmp(tokens[ope1].str,"&")){
+    if(strcmp(tokens[ope2].str,"&"))
+      retrun 1;
+    return 0;
+  }
+  else if(!(strcmp(tokens[ope1].str,"/")) || !(strcmp(tokens[ope1].str, "*")) || !(strcmp(tokens[ope1].str, "%"))){
+    if(!(strcmp(tokens[ope2].str, "&"))){
+      return -1;
+    }
+   else if(!(strcmp(tokens[ope2].str,"/")) || !(strcmp(tokens[ope2].str, "*")) || !(strcmp(tokens[ope2].str, "%"))){
+    return 0;
+   }
+   return 1;
+  } 
+  else if(!(strcmp(tokens[ope1].str,"+")) || !(strcmp(tokens[ope1].str, "-"))){
+    if(!(strcmp(tokens[ope2].str,"/")) || !(strcmp(tokens[ope2].str, "*")) || !(strcmp(tokens[ope2].str, "%")) || !(strcmp(tokens[ope2].str,"&"))){
+      return -1;
+    }
+    else if(!(strcmp(tokens[ope2].str,"+")) || !(strcmp(tokens[ope2].str, "-"))){
+      return 0;
+    }
+    return 1;
+  }
+}
+
 */
