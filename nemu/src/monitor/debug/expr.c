@@ -182,7 +182,6 @@ bool check_parentheses(int p, int q){
 int eval(int p, int q){
   int op;
   int val1, val2;;
-  printf("%d\n", p);
   if(p > q){
     printf("This expression is Bad expression\n");
     return 0;
@@ -203,7 +202,7 @@ int eval(int p, int q){
   else{
     op = OP_CET(p,q);
     printf("str =  %s\n", tokens[op].str);
-    printf("p = %d\n", p);
+    printf("op = %d\n", op);
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
