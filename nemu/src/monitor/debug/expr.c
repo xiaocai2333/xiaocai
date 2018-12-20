@@ -140,7 +140,7 @@ uint32_t expr(char *e, bool *success) {
       printf("%s\n", tokens[i].str);
     }
     sum = eval(0,nr_token - 1);
-    printf("%d\n", sum);
+    printf("result = %d\n", sum);
   }
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
