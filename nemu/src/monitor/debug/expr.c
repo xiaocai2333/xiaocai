@@ -128,15 +128,18 @@ static bool make_token(char *e) {
 }
 
 uint32_t expr(char *e, bool *success) {
-  int sum = 0;
+  //int sum = 0;
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
 
   else{
-    sum = eval(0,nr_token - 1);
-    printf("%d\n", sum);
+    for(int i = 0; i < nr_token; i++){
+      printf("%s\n", tokens[i].str);
+    }
+    //sum = eval(0,nr_token - 1);
+    //printf("%d\n", sum);
   }
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
