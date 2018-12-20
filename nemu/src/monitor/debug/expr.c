@@ -197,6 +197,7 @@ int eval(int p, int q){
     }
     else{
       if(tokens[p].type == 10){
+        printf("22222\n");
         return atoi(tokens[p].str);
       }
       else{
