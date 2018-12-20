@@ -199,6 +199,7 @@ int eval(int p, int q){
   else{
     op = OP_CET(p);
     printf("%s\n", tokens[op].str);
+    printf("%d\n", p);
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
