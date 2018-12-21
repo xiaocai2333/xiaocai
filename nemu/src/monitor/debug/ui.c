@@ -73,7 +73,7 @@ static int cmd_p(char *args){
 }
 
 static int cmd_x(char *args){
-  /*
+  
   int n;
   
   char *p;
@@ -84,9 +84,9 @@ static int cmd_x(char *args){
   for(int i = 0; i < n; i++){
     printf("0x%x\t0x%x\n", addr + i*4,paddr_read(addr + i*4,4));
   }
-  */
-  int n = 1234567;
-  printf("%x %x\n", n, paddr_read(7654321,4));
+  
+  //int n = 1234567;
+  //printf("%x %x\n", n, paddr_read(7654321,4));
   return 0;
 }
 
