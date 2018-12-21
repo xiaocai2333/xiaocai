@@ -210,7 +210,6 @@ int eval(int p, int q){
   int val1, val2;;
   int h_num = 0;
   if(p > q){
-    printf("p = %d   q = %d\n", p, q);
     printf("This expression is Bad expression\n");
     return 0;
   }
@@ -263,16 +262,13 @@ int eval(int p, int q){
     return 0;
   }
   else if(check_parentheses(p,q) == true){
-    printf("2333\n");
     return eval(p + 1, q - 1);
   }
   else{
-    printf("p = %d    q = %d\n", p, q);
+
     op = OP_CET(p,q);
-    printf("op = %d\n", op);
-    printf("%d\n", tokens[op].type);
+
     if(tokens[op].type == 80 || tokens[op].type == 99){
-      printf("hahah\n");
       val1 = 0;
       val2 = eval(op + 1, q);
     }
