@@ -264,7 +264,10 @@ int eval(int p, int q){
     return eval(p + 1, q - 1);
   }
   else{
-
+    if(OP_CET(p, q) == -1){
+      printf("This expression is Bad expression\n");
+      return 0;
+    }
     op = OP_CET(p,q);
 
     if(tokens[op].type == 80 || tokens[op].type == 99){
@@ -303,7 +306,10 @@ int OP_CET(int p, int q){
       }
     }
   }
-  if(k == 1){
+  if(k == 0){
+    return -1;
+  }
+  else if(k == 1){
     return oper[0];
   }
   for(int j = 1; j < k; j++){
