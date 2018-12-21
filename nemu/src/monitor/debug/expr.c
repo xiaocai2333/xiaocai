@@ -306,40 +306,44 @@ int COMPARE_OPERATOR(int ope1, int ope2){
     if(tokens[ope2].type != 40){
       return 1;
     }
-    return 0;
-  }
-  else if(tokens[ope2].type == 40){
-    if(tokens[ope1].type == 40){
+    else{
       return 0;
     }
-    return -1;
+
   }
-  else if(!strcmp(tokens[ope1].str,"&")){
-    if(strcmp(tokens[ope2].str,"&"))
+  else if(tokens[ope1].type == 100){
+    if(tokens[ope2].type == 40){
+      return -1;
+    }
+    else if(tokens[ope2].type == 100){
+      return 0;
+    }
+    else{
       return 1;
-    return 0;
+    }
   }
-
-  else if(!(strcmp(tokens[ope1].str,"/")) || !(strcmp(tokens[ope1].str, "*")) || !(strcmp(tokens[ope1].str, "%"))){
-    if(!(strcmp(tokens[ope2].str, "&"))){
+  else if(tokens[ope1].type >= 103 && tokens[ope1].type <= 105){
+    if(tokens[ope2].type == 40 || tokens[ope2].type == 100){
       return -1;
     }
-   else if(!(strcmp(tokens[ope2].str,"/")) || !(strcmp(tokens[ope2].str, "*")) || !(strcmp(tokens[ope2].str, "%"))){
-    return 0;
-   }
-   return 1;
-  } 
-
-  else if(!(strcmp(tokens[ope1].str,"+")) || !(strcmp(tokens[ope1].str, "-"))){
-    if(!(strcmp(tokens[ope2].str,"/")) || !(strcmp(tokens[ope2].str, "*")) || !(strcmp(tokens[ope2].str, "%")) || !(strcmp(tokens[ope2].str,"&"))){
-      return -1;
-    }
-    else if(!(strcmp(tokens[ope2].str,"+")) || !(strcmp(tokens[ope2].str, "-"))){
+    else if(tokens[ope2].type >= 103 && tokens[ope2].type <= 105){
       return 0;
     }
-    return 1;
+    else{
+      return 1;
+    }
   }
-  return 1;
+  else if(tokens[ope1].type == 101 || tokens[ope1].type == 102){
+    if(tokens[ope2].type == 101 || tokens[ope2].type == 102){
+      return 0;
+    }
+    else{
+      return -1;
+    }
+  }
+  else{
+    return 0;
+  }
 }
 
 
