@@ -13,6 +13,8 @@ int OP_CET(int p,int q);
 int COMPARE_OPERATOR(int ope1, int ope2);
 bool IsOPERINBRA(int p, int j);
 bool IsOPERTRUE(int p, int q);
+bool IsPOINT(int p);
+uint32_t paddr_read(paddr_t addr, int len);
 
 enum {
   TK_NOTYPE = 256, 
@@ -146,9 +148,10 @@ uint32_t expr(char *e, bool *success) {
   }
 
   else{
-    for (int i = 0; i < nr_token; ++i)
-    {
-      printf("%s\n", tokens[i].str);
+    for(int i = 0; i < nr_token; i++){
+      if(tokens[i].type == 103 && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i].type == '(')){
+        tokens[i].type = 40;
+      }
     }
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
@@ -266,6 +269,7 @@ int eval(int p, int q){
       case 103: return val1 * val2;
       case 104: return val1 / val2;
       case 105: return val1 % val2;
+      case  40: return paddr_read(val2,4);
 
       default: return 0;
     }
@@ -298,7 +302,19 @@ int OP_CET(int p, int q){
 
 
 int COMPARE_OPERATOR(int ope1, int ope2){
-  if(!strcmp(tokens[ope1].str,"&")){
+  if(tokens[ope1].type == 40){
+    if(tokens[ope2].type != 40){
+      return 1;
+    }
+    return 0;
+  }
+  else if(tokens[ope2].type == 40){
+    if(tokens[ope1].type == 40){
+      return 0;
+    }
+    return -1;
+  }
+  else if(!strcmp(tokens[ope1].str,"&")){
     if(strcmp(tokens[ope2].str,"&"))
       return 1;
     return 0;
