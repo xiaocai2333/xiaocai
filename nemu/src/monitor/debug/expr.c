@@ -291,6 +291,7 @@ int OP_CET(int p, int q){
   for(int i = p; i <= q; i++){
     if((tokens[i].type >= 100 && tokens[i].type <= 105) || tokens[i].type == 40){
       if(IsOPERINBRA(p, i)){
+        printf("%s\n", tokens[i].str);
         oper[k] = i;
         k++;
       }
