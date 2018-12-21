@@ -254,6 +254,7 @@ int eval(int p, int q){
     return 0;
   }
   else if(check_parentheses(p,q) == true){
+    printf("2333\n");
     return eval(p + 1, q - 1);
   }
   else{
@@ -276,7 +277,7 @@ int eval(int p, int q){
       case 103: return val1 * val2;
       case 104: return val1 / val2;
       case 105: return val1 % val2;
-      case  40: return vaddr_read(val2,2);
+      case  40: return vaddr_read(val2,4);
 
       default: return 0;
     }
