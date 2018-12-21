@@ -269,7 +269,7 @@ int eval(int p, int q){
       case 103: return val1 * val2;
       case 104: return val1 / val2;
       case 105: return val1 % val2;
-      case  40: return paddr_read(val2,4);
+      case  40: return paddr_read(val2,2);
 
       default: return 0;
     }
