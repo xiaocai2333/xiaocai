@@ -159,7 +159,6 @@ uint32_t expr(char *e, bool *success) {
       else if(tokens[i].type == 102 && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i - 1].type == 40)){
         tokens[i].type = 99;
       }
-      printf("type = %d, str = %s\n", tokens[i].type, tokens[i].str);
     }
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
