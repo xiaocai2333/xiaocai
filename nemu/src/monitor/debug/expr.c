@@ -259,7 +259,7 @@ int eval(int p, int q){
   else{
 
     op = OP_CET(p,q);
-    printf("%d\n", op);
+    printf("op = %d\n", op);
     val1 = eval(p, op - 1);
     val2 = eval(op + 1, q);
 
