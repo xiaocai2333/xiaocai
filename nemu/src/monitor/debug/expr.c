@@ -262,9 +262,10 @@ int eval(int p, int q){
     return eval(p + 1, q - 1);
   }
   else{
-
+    printf("%d    %d\n", p, q);
     op = OP_CET(p,q);
     printf("op = %d\n", op);
+
     if(tokens[op].type == 40){
       val1 = 0;
       val2 = eval(op + 1, q);
