@@ -18,7 +18,7 @@ uint32_t vaddr_read(paddr_t addr, int len);
 
 enum {
   TK_NOTYPE = 256, 
-  TK_NEG = 99,
+  //TK_NEG = 99,
 
   TK_QADDR = 100,
   TK_PLUS = 101,
@@ -48,7 +48,7 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
-  {"-[0-9]+", TK_NEG},
+  //{"-[0-9]+", TK_NEG},
   {"\\&", TK_QADDR},
   {"\\+", TK_PLUS},         // plus
   {"\\-", TK_REDUCE},         //reduce
@@ -212,12 +212,12 @@ int eval(int p, int q){
     return 0;
   }
   else if(p == q){
-    if(tokens[p].type != 10 && tokens[p].type != 16 && tokens[p].type != 200 && tokens[p].type != 99){
+    if(tokens[p].type != 10 && tokens[p].type != 16 && tokens[p].type != 200){
       //*success = false;
       return 0;
     }
     else{
-      if(tokens[p].type == 10 || tokens[p].type == 99){
+      if(tokens[p].type == 10){
         return atoi(tokens[p].str);
       }
       else if(tokens[p].type == 16){
