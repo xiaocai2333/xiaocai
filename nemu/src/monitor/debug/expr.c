@@ -153,9 +153,9 @@ uint32_t expr(char *e, bool *success) {
 
   else{
     for(int i = 0; i < nr_token; i++){
-      if(tokens[i].type == '*' && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i].type == '(')){
-        tokens[i].type = 40;
-      }
+      //if(tokens[i].type == '*' && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i].type == '(')){
+       // tokens[i].type = 40;
+      //}
       printf("type = %d, str = %s\n", tokens[i].type, tokens[i].str);
     }
     if(IsOPERTRUE(0,nr_token -1)){
