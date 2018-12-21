@@ -14,7 +14,7 @@ int COMPARE_OPERATOR(int ope1, int ope2);
 bool IsOPERINBRA(int p, int j);
 bool IsOPERTRUE(int p, int q);
 bool IsPOINT(int p);
-uint32_t paddr_read(paddr_t addr, int len);
+uint32_t vaddr_read(paddr_t addr, int len);
 
 enum {
   TK_NOTYPE = 256, 
@@ -269,7 +269,7 @@ int eval(int p, int q){
       case 103: return val1 * val2;
       case 104: return val1 / val2;
       case 105: return val1 % val2;
-      case  40: return paddr_read(val2,2);
+      case  40: return vaddr_read(val2,2);
 
       default: return 0;
     }
