@@ -268,6 +268,7 @@ int eval(int p, int q){
     printf("op = %d\n", op);
 
     if(tokens[op].type == 40){
+      printf("hahah\n");
       val1 = 0;
       val2 = eval(op + 1, q);
     }
