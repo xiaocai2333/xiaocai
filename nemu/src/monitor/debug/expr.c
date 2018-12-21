@@ -153,7 +153,7 @@ uint32_t expr(char *e, bool *success) {
 
   else{
     for(int i = 0; i < nr_token; i++){
-      if(tokens[i].type == 103 && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i].type == '(')){
+      if(tokens[i].type == 103 && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i].type == 40)){
         tokens[i].type = 80;
       }
       printf("type = %d, str = %s\n", tokens[i].type, tokens[i].str);
