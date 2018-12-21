@@ -85,8 +85,8 @@ static int cmd_x(char *args){
     printf("0x%x\t0x%x\n", addr + i*4,paddr_read(addr + i*4,4));
   }
   */
-  int n = 1234;
-  printf("%x %x\n", n, paddr_read(1234,4));
+  int n = 1234567;
+  printf("%x %x\n", n, paddr_read(1234567,4));
   return 0;
 }
 
