@@ -156,6 +156,7 @@ uint32_t expr(char *e, bool *success) {
       if(tokens[i].type == 103 && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i].type == '(')){
         tokens[i].type = 40;
       }
+      printf("type = %d, str = %s\n", tokens[i].type, tokens[i].str);
     }
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
