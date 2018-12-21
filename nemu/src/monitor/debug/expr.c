@@ -153,9 +153,9 @@ uint32_t expr(char *e, bool *success) {
 
   else{
     for(int i = 0; i < nr_token; i++){
-      //if(tokens[i].type == '*' && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i].type == '(')){
-       // tokens[i].type = 40;
-      //}
+      if(tokens[i].type == 103 && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i].type == '(')){
+        tokens[i].type = 80;
+      }
       printf("type = %d, str = %s\n", tokens[i].type, tokens[i].str);
     }
     if(IsOPERTRUE(0,nr_token -1)){
@@ -268,7 +268,7 @@ int eval(int p, int q){
     op = OP_CET(p,q);
     printf("op = %d\n", op);
     printf("%d\n", tokens[op].type);
-    if(tokens[op].type == 40){
+    if(tokens[op].type == 80){
       printf("hahah\n");
       val1 = 0;
       val2 = eval(op + 1, q);
@@ -285,7 +285,7 @@ int eval(int p, int q){
       case 103: return val1 * val2;
       case 104: return val1 / val2;
       case 105: return val1 % val2;
-      case  40: return vaddr_read(val2,4);
+      case  80: return vaddr_read(val2,4);
 
       default: return 0;
     }
@@ -297,7 +297,7 @@ int OP_CET(int p, int q){
   int oper[nr_token];
 
   for(int i = p; i <= q; i++){
-    if((tokens[i].type >= 100 && tokens[i].type <= 105) || tokens[i].type == 40){
+    if((tokens[i].type >= 100 && tokens[i].type <= 105) || tokens[i].type == 80){
       if(IsOPERINBRA(p, i)){
         printf("%d    %s\n", i,tokens[i].str);
         oper[k] = i;
@@ -319,8 +319,8 @@ int OP_CET(int p, int q){
 
 
 int COMPARE_OPERATOR(int ope1, int ope2){
-  if(tokens[ope1].type == 40){
-    if(tokens[ope2].type != 40){
+  if(tokens[ope1].type == 80){
+    if(tokens[ope2].type != 80){
       return 1;
     }
     else{
@@ -329,7 +329,7 @@ int COMPARE_OPERATOR(int ope1, int ope2){
 
   }
   else if(tokens[ope1].type == 100){
-    if(tokens[ope2].type == 40){
+    if(tokens[ope2].type == 80){
       return -1;
     }
     else if(tokens[ope2].type == 100){
@@ -340,7 +340,7 @@ int COMPARE_OPERATOR(int ope1, int ope2){
     }
   }
   else if(tokens[ope1].type >= 103 && tokens[ope1].type <= 105){
-    if(tokens[ope2].type == 40 || tokens[ope2].type == 100){
+    if(tokens[ope2].type == 80 || tokens[ope2].type == 100){
       return -1;
     }
     else if(tokens[ope2].type >= 103 && tokens[ope2].type <= 105){
