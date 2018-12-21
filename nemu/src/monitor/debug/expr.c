@@ -110,7 +110,7 @@ static bool make_token(char *e) {
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
         position += substr_len;
-        if(tokens[nr_token].type == TK_NOTYPE){
+        if(tokens[i].type == TK_NOTYPE){
 
         }
         else{
