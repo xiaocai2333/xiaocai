@@ -286,7 +286,7 @@ int eval(int p, int q){
       case  80: return vaddr_read(val2,4);
       case  99: return val2 * -1;
 
-      default: return 0;
+      default: assert(0);
     }
   }
 }
