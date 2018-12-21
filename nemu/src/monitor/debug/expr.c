@@ -16,6 +16,8 @@ bool IsOPERTRUE(int p, int q);
 bool IsPOINT(int p);
 uint32_t vaddr_read(paddr_t addr, int len);
 
+
+bool success;
 enum {
   TK_NOTYPE = 256, 
   //TK_NEG = 99,
@@ -144,10 +146,10 @@ static bool make_token(char *e) {
   return true;
 }
 
-uint32_t expr(char *e, bool *success) {
+uint32_t expr(char *e) {
   int sum = 0;
   if (!make_token(e)) {
-    *success = false;
+    success = false;
     return 0;
   }
 
@@ -162,13 +164,14 @@ uint32_t expr(char *e, bool *success) {
     }
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
-      printf("result = %d(DEX)     %x(HEX)\n", sum, sum);
+      if(success){
+        printf("result = %d(DEX)     %x(HEX)\n", sum, sum);
+      }
+      else{
+      printf("This expression is Bad expression\n");
+      }
     }
 
-    else{
-      printf("This expression is Bad expression\n");
-      return 0;
-    }
   }
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
@@ -209,12 +212,12 @@ int eval(int p, int q){
   int val1, val2;;
   int h_num = 0;
   if(p > q){
-    printf("This expression is Bad expression\n");
+    success = false;
     return 0;
   }
   else if(p == q){
     if(tokens[p].type != 10 && tokens[p].type != 16 && tokens[p].type != 200){
-      //*success = false;
+      success = false;
       return 0;
     }
     else{
@@ -265,7 +268,7 @@ int eval(int p, int q){
   }
   else{
     if(OP_CET(p, q) == -1){
-      printf("This expression is Bad expression\n");
+      success = false;
       return 0;
     }
     op = OP_CET(p,q);
