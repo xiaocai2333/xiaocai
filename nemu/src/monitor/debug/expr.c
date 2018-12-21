@@ -206,6 +206,7 @@ int eval(int p, int q){
   int val1, val2;;
   int h_num = 0;
   if(p > q){
+    printf("p = %d   q = %d\n", p, q);
     printf("This expression is Bad expression\n");
     return 0;
   }
