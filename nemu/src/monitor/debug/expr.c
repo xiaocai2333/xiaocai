@@ -260,8 +260,15 @@ int eval(int p, int q){
 
     op = OP_CET(p,q);
     printf("op = %d\n", op);
-    val1 = eval(p, op - 1);
-    val2 = eval(op + 1, q);
+    if(tokens[op].type == 40){
+      val1 = 0;
+      val2 = eval(op + 1, q);
+    }
+    else{
+      val1 = eval(p, op - 1);
+      val2 = eval(op + 1, q);
+    }
+    
 
     switch(tokens[op].type){
       case 101: return val1 + val2;
