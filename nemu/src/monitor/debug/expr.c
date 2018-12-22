@@ -171,6 +171,9 @@ uint32_t expr(char *e) {
       printf("This expression is Bad expression\n");
       }
     }
+    else{
+      printf("This expression is Bad expression\n");
+    }
 
   }
   /* TODO: Insert codes to evaluate the expression. */
