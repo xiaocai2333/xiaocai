@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 bool check_parentheses(int p, int q);
-int eval(int p, int q);
+uint32_t eval(int p, int q);
 int OP_CET(int p,int q);
 int COMPARE_OPERATOR(int ope1, int ope2);
 bool IsOPERINBRA(int p, int j);
@@ -210,7 +210,7 @@ bool check_parentheses(int p, int q){
 }
 
 
-int eval(int p, int q){
+uint32_t eval(int p, int q){
   int op;
   int val1, val2;;
   int h_num = 0;
