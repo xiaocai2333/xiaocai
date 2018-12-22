@@ -17,7 +17,7 @@ bool IsPOINT(int p);
 uint32_t vaddr_read(paddr_t addr, int len);
 
 
-bool success;
+bool success = true;
 enum {
   TK_NOTYPE = 256, 
   //TK_NEG = 99,
