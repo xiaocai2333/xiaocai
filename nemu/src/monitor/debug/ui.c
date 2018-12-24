@@ -67,9 +67,8 @@ static int cmd_info(char *args){
 }
 
 static int cmd_p(char *args){
-  bool b = true;
-  bool *a = &b;
-  return expr(args,a);
+  printf("%s = %d\n", args, expr(args));
+  return expr(args);
 }
 
 static int cmd_x(char *args){
@@ -92,7 +91,7 @@ static int cmd_x(char *args){
 
 static int cmd_w(char *args){
   uint32_t result = cmd_p(args);
-  printf("%d\n", result);
+  new_wp(args,result);
   return 0;
 }
 

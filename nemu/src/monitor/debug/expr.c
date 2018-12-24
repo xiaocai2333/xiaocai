@@ -150,7 +150,7 @@ static bool make_token(char *e) {
   return true;
 }
 
-uint32_t expr(char *e, bool success) {
+uint32_t expr(char *e) {
   int sum = 0;
   if (!make_token(e)) {
     success = false;
@@ -169,7 +169,6 @@ uint32_t expr(char *e, bool success) {
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
       if(success){
-        printf("result = %d(DEX)     %x(HEX)\n", sum, sum);
         return sum;
       }
       else{
