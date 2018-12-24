@@ -35,6 +35,7 @@ void new_wp(char *e, int result){
 /* TODO: Implement the functionality of watchpoint */
 
 void free_wp(int i){
+	printf("hahah\n");
 	if(head == NULL){
 		printf("no used watchpoint\n");
 		return;
@@ -52,6 +53,7 @@ void free_wp(int i){
 	}
 	WP *new_n = head->next;
 	while(new_n != NULL){
+		printf("2333\n");
 		if(new_n->NO == i){
 			new_pre->next = new_n->next;
 			new_n->next = NULL;
