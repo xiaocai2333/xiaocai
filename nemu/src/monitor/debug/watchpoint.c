@@ -65,7 +65,7 @@ void free_wp(int i){
 			return;
 		}
 		new_pre = new_n;
-		new_pre = new_n->next;
+		new_n = new_n->next;
 	}
 	assert(0);
 }
