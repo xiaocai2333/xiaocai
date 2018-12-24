@@ -11,7 +11,8 @@
 void cpu_exec(uint64_t);
 
 uint32_t paddr_read(paddr_t addr, int len);
-//struct CPU_state regis;
+void new_wp(char *e, int result);
+
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
@@ -90,6 +91,10 @@ static int cmd_x(char *args){
   return 0;
 }
 
+// static void cmd_xp(char *args){
+//   int result = cmd_p(args);
+// }
+
 static int cmd_q(char *args) {
 
   return -1;
@@ -109,7 +114,7 @@ static struct {
   { "info","info r: Print register status; info w: Print Monitoring Point Information",cmd_info},
   { "p","Find the value of the expression EXPR",cmd_p},
   { "x","Find the value of the expression EXPR and take the result as the starting point.Deposit Address, output N consecutive 4 words in hexadecimal form section", cmd_x},
-
+  //{ "xp", "create expressions",cmd_xp}
   /* TODO: Add more commands */
 
 };
@@ -178,3 +183,5 @@ void ui_mainloop(int is_batch_mode) {
     if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
   }
 }
+
+

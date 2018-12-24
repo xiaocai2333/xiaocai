@@ -34,7 +34,9 @@ enum {
 
   TK_REG = 200,
 
-   TK_EQ,
+  TK_EQ = 150,
+  TK_LQ = 149,
+  TK_BQ = 151,
 
   /* TODO: Add more token types */
 
@@ -63,7 +65,9 @@ static struct rule {
   {"[0-9]+", TK_DEX},
   {"\\$[a-zA-Z]+", TK_REG},
 
-  {"==", TK_EQ}         // equal
+  {"==", TK_EQ},         // equal
+  {"<=", TK_LQ},
+  {">=", TK_BQ}
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -146,7 +150,7 @@ static bool make_token(char *e) {
   return true;
 }
 
-uint32_t expr(char *e) {
+uint32_t expr(char *e, bool success) {
   int sum = 0;
   if (!make_token(e)) {
     success = false;
@@ -294,6 +298,12 @@ uint32_t eval(int p, int q){
       case 105: return val1 % val2;
       case  80: return vaddr_read(val2,4);
       case  99: return val2 * -1;
+      case 149: if(val1 <= val2) return 1;
+                else return 0;
+      case 150: if(val1 == val2) return 1;
+                else return 0;
+      case 151: if(val1 >= val2) return 1;
+                else return 0;
 
       default: return 0;
     }

@@ -18,6 +18,73 @@ void init_wp_pool() {
   free_ = wp_pool;
 }
 
-/* TODO: Implement the functionality of watchpoint */
 
+// void new_wp(char *e, int result){
+// 	assert(free_ != NULL);
+// 	WP *new = free_;
+// 	free_ = free_->next;
+// 	strcpy(new->exp,e);
 
+// 	new->result = result;
+// 	new->next = head;
+// 	head = new;
+// }
+
+// /* TODO: Implement the functionality of watchpoint */
+
+// void free_wp(int i){
+// 	if(head == NULL){
+// 		printf("no used watchpoint\n");
+// 	}
+// 	WP *new_pre = head;
+// 	if(new_pre->NO == i){
+// 		head = head->next;
+// 		new_pre->next = NULL;
+// 		memset(new_pre->exp,0,sizeof(new_pre->exp));
+// 		new_pre->result = 0;
+// 		new_pre->next = free_;
+// 		free_ = new_pre;
+// 		return ;
+// 	}
+// 	WP *new_n = head->next;
+// 	while(new_n != NULL){
+// 		if(new_n->NO == i){
+// 			new_pre->next = new_n->next;
+// 			new_n->next = NULL;
+// 			memset(new_n->exp,0,sizeof(new_n->exp));
+// 			new_n->result = 0;
+// 			new_n->next = free_;
+// 			free_ = new_n;
+// 			return;
+// 		}
+// 		new_pre = new_n;
+// 		new_pre = new_n->new_n;
+// 	}
+// 	assert(0);
+// }
+
+// void print_wp(){
+// 	WP *node = head;
+// 	if(node == NULL){
+// 		printf("no watchpoint\n");
+// 		return;
+// 	}
+// 	while(node != NULL){
+// 		printf("%-3d %10s %d|0x%x\n", node->NO, node->exp,node->result, node->result);
+// 		node = node->next;
+// 	}
+// }
+
+// bool check_wp(){
+// 	WP *node = head;
+// 	bool r = false;
+// 	while(node != NULL){
+// 		int reset = expr(node->exp);
+// 		if(reset != node->result){
+// 			node->result = reset;
+// 			r = true;
+// 		}
+// 		node = node->next;
+// 	}
+// 	return reset;
+// }
