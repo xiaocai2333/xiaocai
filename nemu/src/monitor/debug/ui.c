@@ -95,6 +95,12 @@ static int cmd_w(char *args){
   return 0;
 }
 
+static int cmd_d(char *args){
+  int num = atoi(args);
+  printf("%d\n", num);
+  return 0;
+}
+
 static int cmd_q(char *args) {
 
   return -1;
@@ -115,6 +121,7 @@ static struct {
   { "p","Find the value of the expression EXPR",cmd_p},
   { "x","Find the value of the expression EXPR and take the result as the starting point.Deposit Address, output N consecutive 4 words in hexadecimal form section", cmd_x},
   { "w", "create expressions",cmd_w},
+  { "d", "delete the watchpoint of NO", cmd_d},
   /* TODO: Add more commands */
 
 };
