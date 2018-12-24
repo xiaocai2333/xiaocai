@@ -37,6 +37,7 @@ void new_wp(char *e, int result){
 void free_wp(int i){
 	if(head == NULL){
 		printf("no used watchpoint\n");
+		return;
 	}
 	WP *new_pre = head;
 	if(new_pre->NO == i){
