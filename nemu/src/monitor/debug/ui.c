@@ -12,7 +12,7 @@ void cpu_exec(uint64_t);
 
 uint32_t paddr_read(paddr_t addr, int len);
 void new_wp(char *e, int result);
-
+void free_wp(int i);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
@@ -97,7 +97,7 @@ static int cmd_w(char *args){
 
 static int cmd_d(char *args){
   int num = atoi(args);
-  printf("%d\n", num);
+  free_wp(num);
   return 0;
 }
 
