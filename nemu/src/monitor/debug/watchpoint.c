@@ -30,6 +30,7 @@ void new_wp(char *e, int result){
 	new->next = head;
 	head = new;
 	printf("create a new watchpoint: NO:%d, result: %d\n", new->NO, new->result);
+	printf("%d\n", head->NO);
 }
 
 /* TODO: Implement the functionality of watchpoint */
