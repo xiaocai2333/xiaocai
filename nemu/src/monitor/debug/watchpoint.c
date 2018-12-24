@@ -41,6 +41,7 @@ void free_wp(int i){
 		return;
 	}
 	WP *new_pre = head;
+	printf("i =%d, NO = %d\n", i, new_pre->NO);
 	if(new_pre->NO == i){
 		head = head->next;
 		new_pre->next = NULL;
@@ -53,7 +54,6 @@ void free_wp(int i){
 	}
 	WP *new_n = head->next;
 	while(new_n != NULL){
-		printf("2333\n");
 		if(new_n->NO == i){
 			new_pre->next = new_n->next;
 			new_n->next = NULL;
