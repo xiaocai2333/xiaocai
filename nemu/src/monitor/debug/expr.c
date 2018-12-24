@@ -170,6 +170,7 @@ uint32_t expr(char *e, bool success) {
       sum = eval(0,nr_token - 1);
       if(success){
         printf("result = %d(DEX)     %x(HEX)\n", sum, sum);
+        return sum;
       }
       else{
       printf("This expression is Bad expression\n");
