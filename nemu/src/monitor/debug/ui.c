@@ -69,10 +69,7 @@ static int cmd_info(char *args){
 static int cmd_p(char *args){
   bool b = true;
   bool *a = &b;
-  uint32_t result = 0;
-  result = expr(args,a);
-  printf("%d\n", result);
-  return 0;
+  return expr(args,a);
 }
 
 static int cmd_x(char *args){
@@ -93,9 +90,11 @@ static int cmd_x(char *args){
   return 0;
 }
 
-// static void cmd_w(char *args){
-//   int result = cmd_p(args);
-// }
+static int cmd_w(char *args){
+  uint32_t result = cmd_p(args);
+  printf("%d\n", result);
+  return 0;
+}
 
 static int cmd_q(char *args) {
 
@@ -116,7 +115,7 @@ static struct {
   { "info","info r: Print register status; info w: Print Monitoring Point Information",cmd_info},
   { "p","Find the value of the expression EXPR",cmd_p},
   { "x","Find the value of the expression EXPR and take the result as the starting point.Deposit Address, output N consecutive 4 words in hexadecimal form section", cmd_x},
-  //{ "w", "create expressions",cmd_w},
+  { "w", "create expressions",cmd_w},
   /* TODO: Add more commands */
 
 };
