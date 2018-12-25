@@ -26,7 +26,7 @@ void new_wp(char *e, int result){
 	free_ = free_->next;
 	strcpy(new->exp,e);
 	new->result = result;
-	if(new->NO == 1){
+	if(new->NO == 0){
 		head = new;
 	}
 	printf("create a new watchpoint: NO:%d, result: %d\n", new->NO, new->result);
