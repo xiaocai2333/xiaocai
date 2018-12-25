@@ -43,6 +43,7 @@ void free_wp(int i){
 	}
 	WP *new_pre = head;
 	WP *p1 = head;
+	printf("head = %d\n", head->NO);
 	if(head->NO == i){
 		new_pre->next = free_;
 		free_ = new_pre;
