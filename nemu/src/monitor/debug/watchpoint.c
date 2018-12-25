@@ -48,6 +48,7 @@ void free_wp(int i){
 		new_pre->result = 0;
 		new_pre->next = free_;
 		free_ = new_pre;
+		printf("head = %d\n", head->NO);
 		printf("the watchpoint of NO: %d has deleted!\n", i);
 		return ;
 	}
