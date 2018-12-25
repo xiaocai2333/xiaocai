@@ -25,10 +25,7 @@ void new_wp(char *e, int result){
 	WP *new = free_;
 	free_ = free_->next;
 	strcpy(new->exp,e);
-
 	new->result = result;
-	new->next = head;
-	head = new;
 	printf("create a new watchpoint: NO:%d, result: %d\n", new->NO, new->result);
 	printf("head = %d\n", head->NO);
 }
@@ -41,32 +38,26 @@ void free_wp(int i){
 		return;
 	}
 	WP *new_pre = head;
-	printf("head = %d\n", head->NO);
-	if(new_pre->NO == i){
-		head = head->next;
-		new_pre->next = NULL;
-		memset(new_pre->exp,0,sizeof(new_pre->exp));
-		new_pre->result = 0;
+	WP *p1 = head;
+	if(head->NO == i){
 		new_pre->next = free_;
 		free_ = new_pre;
-		printf("head = %d\n", head->NO);
-		printf("the watchpoint of NO: %d has deleted!\n", i);
-		return ;
+		head = head->next;
 	}
-	WP *new_n = head->next;
-	while(new_n != NULL){
-		if(new_n->NO == i){
-			new_pre->next = new_n->next;
-			new_n->next = NULL;
-			memset(new_n->exp,0,sizeof(new_n->exp));
-			new_n->result = 0;
-			new_n->next = free_;
-			free_ = new_n;
-			printf("the watchpoint of NO: %d has deleted!\n", i);
-			return;
+	else{
+		while(new_pre->NO != i){
+			p1 = new_pre;
+			new_pre = new_pre->next;
 		}
-		new_pre = new_n;
-		new_n = new_n->next;
+		if(new_pre->next == free_){
+			free_ = new_pre;
+		}
+		else{
+			p1->next = new_pre->next;
+			new_pre->next = free_;
+			free_ = new_pre;
+		}
+		
 	}
 	assert(0);
 }
