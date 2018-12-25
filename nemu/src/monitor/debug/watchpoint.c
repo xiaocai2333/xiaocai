@@ -67,7 +67,6 @@ void free_wp(int i){
 		}
 		
 	}
-	assert(0);
 }
 
 void print_wp(){
