@@ -50,6 +50,7 @@ void free_wp(int i){
 		free_ = new_pre;
 		head = head->next;
 		head_f->next =free_;
+		printf("the NO of: %d has deleted!\n", i);
 	}
 	else{
 		while(new_pre->NO != i){
@@ -61,6 +62,7 @@ void free_wp(int i){
 			printf("hah\n");
 			free_ = new_pre;
 			head_f->next =free_;
+			printf("the NO of: %d has deleted!\n", i);
 		}
 		else{
 			printf("lala\n");
@@ -68,6 +70,7 @@ void free_wp(int i){
 			new_pre->next = free_;
 			free_ = new_pre;
 			head_f->next =free_;
+			printf("the NO of: %d has deleted!\n", i);
 		}
 		
 	}
