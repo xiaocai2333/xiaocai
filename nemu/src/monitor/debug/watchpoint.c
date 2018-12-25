@@ -5,7 +5,7 @@
 #define NR_WP 32
 
 static WP wp_pool[NR_WP];
-static WP *head, *free_;
+static WP *head, *free_, *head_f;
 
 void init_wp_pool() {
   int i;
@@ -26,6 +26,7 @@ void new_wp(char *e, int result){
 	free_ = free_->next;
 	strcpy(new->exp,e);
 	new->result = result;
+	head_f = new;
 	if(new->NO == 0){
 		head = new;
 	}
@@ -48,6 +49,7 @@ void free_wp(int i){
 		new_pre->next = free_;
 		free_ = new_pre;
 		head = head->next;
+		head_f->next =free_;
 	}
 	else{
 		while(new_pre->NO != i){
@@ -58,12 +60,14 @@ void free_wp(int i){
 		if(new_pre->next == free_){
 			printf("hah\n");
 			free_ = new_pre;
+			head_f->next =free_;
 		}
 		else{
 			printf("lala\n");
 			p1->next = new_pre->next;
 			new_pre->next = free_;
 			free_ = new_pre;
+			head_f->next =free_;
 		}
 		
 	}
