@@ -54,6 +54,7 @@ void free_wp(int i){
 			p1 = new_pre;
 			new_pre = new_pre->next;
 		}
+		printf("new_pre = %d\n", new_pre->NO);
 		if(new_pre->next == free_){
 			free_ = new_pre;
 		}
