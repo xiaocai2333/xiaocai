@@ -68,11 +68,11 @@ void free_wp(int i){
 
 void print_wp(){
 	WP *node = head;
-	if(node == NULL){
+	if(node == free_){
 		printf("no watchpoint\n");
 		return;
 	}
-	while(node != NULL){
+	while(node != free_){
 		printf("%-3d %10s %d|0x%x\n", node->NO, node->exp,node->result, node->result);
 		node = node->next;
 	}
