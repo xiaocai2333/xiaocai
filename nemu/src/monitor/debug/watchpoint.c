@@ -41,6 +41,7 @@ void free_wp(int i){
 		return;
 	}
 	WP *new_pre = head;
+	printf("head = %d\n", head->NO);
 	if(new_pre->NO == i){
 		head = head->next;
 		new_pre->next = NULL;
