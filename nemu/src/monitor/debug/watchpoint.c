@@ -30,13 +30,12 @@ void new_wp(char *e, int result){
 	new->next = head;
 	head = new;
 	printf("create a new watchpoint: NO:%d, result: %d\n", new->NO, new->result);
-	printf("%d\n", head->NO);
+	printf("head = %d\n", head->NO);
 }
 
 /* TODO: Implement the functionality of watchpoint */
 
 void free_wp(int i){
-	printf("hahah\n");
 	if(head == NULL){
 		printf("no used watchpoint\n");
 		return;
