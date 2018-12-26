@@ -70,8 +70,9 @@ static int cmd_info(char *args){
 }
 
 static int cmd_p(char *args){
-  printf("%s = %d\n", args, expr(args));
-  return expr(args);
+  uint32_t result = expr(args);
+  printf("%s = %d\n", args, result);
+  return result;
 }
 
 static int cmd_x(char *args){
