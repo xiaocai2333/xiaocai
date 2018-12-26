@@ -292,7 +292,13 @@ uint32_t eval(int p, int q){
       case 101: return val1 + val2;
       case 102: return val1 - val2;
       case 103: return val1 * val2;
-      case 104: return val1 / val2;
+      case 104: if(val2 == 0){
+                  success = false;
+                  return 0;
+                }
+                else{
+                  return val1 / val2;
+                }
       case 105: return val1 % val2;
       case  80: return vaddr_read(val2,4);
       case  99: return val2 * -1;
