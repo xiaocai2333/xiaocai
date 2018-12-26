@@ -22,7 +22,6 @@ enum {
   TK_NOTYPE = 256, 
   //TK_NEG = 99,
 
-  TK_QADDR = 100,
   TK_PLUS = 101,
   TK_REDUCE = 102,
   TK_RIDE = 103,
@@ -34,8 +33,8 @@ enum {
 
   TK_REG = 200,
 
-  TK_EQ = 106,
-  TK_LQ = 107,
+  TK_LQ = 106,
+  TK_EQ = 107,
   TK_BQ = 108,
 
   /* TODO: Add more token types */
@@ -53,7 +52,6 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   //{"-[0-9]+", TK_NEG},
-  {"\\&", TK_QADDR},
   {"\\+", TK_PLUS},         // plus
   {"\\-", TK_REDUCE},         //reduce
   {"\\*", TK_RIDE},         //ride
@@ -301,11 +299,11 @@ uint32_t eval(int p, int q){
       case 105: return val1 % val2;
       case  80: return vaddr_read(val2,4);
       case  99: return val2 * -1;
-      case 149: if(val1 <= val2) return 1;
+      case 106: if(val1 <= val2) return 1;
                 else return 0;
-      case 150: if(val1 == val2) return 1;
+      case 107: if(val1 == val2) return 1;
                 else return 0;
-      case 151: if(val1 >= val2) return 1;
+      case 108: if(val1 >= val2) return 1;
                 else return 0;
 
       default: return 0;
@@ -342,28 +340,28 @@ int OP_CET(int p, int q){
 
 
 int COMPARE_OPERATOR(int ope1, int ope2){
-  if(tokens[ope1].type == 80 || tokens[ope1].type == 99){
-    if(tokens[ope2].type != 80 || tokens[ope2].type == 99){
-      return 1;
+  if(tokens[ope1].type >= 106 && tokens[ope1].type == 108){
+    if(tokens[ope2].type >= 106 && tokens[ope2].type == 108){
+      return 0;
     }
     else{
+      return 1;
+    }
+  }
+  else if(tokens[ope1].type == 80 || tokens[ope1].type == 99){
+    if(tokens[ope2].type >= 106 && tokens[ope2].type == 108){
+      return -1;
+    }
+    if(tokens[ope2].type == 80 && tokens[ope2].type == 99){
       return 0;
+    }
+    else{
+      return 1;
     }
 
   }
-  else if(tokens[ope1].type == 100){
-    if(tokens[ope2].type == 80 || tokens[ope2].type == 99){
-      return -1;
-    }
-    else if(tokens[ope2].type == 100){
-      return 0;
-    }
-    else{
-      return 1;
-    }
-  }
   else if(tokens[ope1].type >= 103 && tokens[ope1].type <= 105){
-    if(tokens[ope2].type == 80 || tokens[ope2].type == 100 || tokens[ope2].type == 99 ){
+    if((tokens[ope2].type >= 106 && tokens[ope2].type == 108) || tokens[ope2].type == 80 || tokens[ope2].type == 99){
       return -1;
     }
     else if(tokens[ope2].type >= 103 && tokens[ope2].type <= 105){
