@@ -86,7 +86,7 @@ void print_wp(){
 bool check_wp(){
 	WP *node = head;
 	bool r = false;
-	while(node != NULL){
+	while(node != head_f){
 		int reset = expr(node->exp);
 		if(reset != node->result){
 			node->result = reset;
