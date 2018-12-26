@@ -167,6 +167,7 @@ uint32_t expr(char *e) {
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
       if(success){
+        printf("%s = %d\n", e, sum);
         return sum;
       }
       else{
@@ -299,6 +300,7 @@ uint32_t eval(int p, int q){
                 else{
                   return val1 / val2;
                 }
+                
       case 105: return val1 % val2;
       case  80: return vaddr_read(val2,4);
       case  99: return val2 * -1;
