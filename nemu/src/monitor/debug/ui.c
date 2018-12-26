@@ -94,6 +94,7 @@ static int cmd_x(char *args){
 
 static int cmd_w(char *args){
   uint32_t result = cmd_p(args);
+  printf("result = %d\n", result);
   new_wp(args,result);
   return 0;
 }
