@@ -149,6 +149,7 @@ static bool make_token(char *e) {
 }
 
 uint32_t expr(char *e) {
+  success = true;
   int sum = 0;
   if (!make_token(e)) {
     success = false;
