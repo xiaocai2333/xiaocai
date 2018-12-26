@@ -171,11 +171,11 @@ uint32_t expr(char *e) {
         return sum;
       }
       else{
-      printf("This expression is Bad expression\n");
+      printf("This expression is Bad1 expression\n");
       }
     }
     else{
-      printf("This expression is Bad expression\n");
+      printf("This expression is Bad2 expression\n");
     }
 
   }
