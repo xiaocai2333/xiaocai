@@ -34,9 +34,9 @@ enum {
 
   TK_REG = 200,
 
-  TK_EQ = 150,
-  TK_LQ = 149,
-  TK_BQ = 151,
+  TK_EQ = 106,
+  TK_LQ = 107,
+  TK_BQ = 108,
 
   /* TODO: Add more token types */
 
@@ -318,7 +318,7 @@ int OP_CET(int p, int q){
   int oper[nr_token];
   oper[0] = 0;
   for(int i = p; i <= q; i++){
-    if((tokens[i].type >= 100 && tokens[i].type <= 105) || tokens[i].type == 80 || tokens[i].type == 99){
+    if((tokens[i].type >= 100 && tokens[i].type <= 108) || tokens[i].type == 80 || tokens[i].type == 99){
       if(IsOPERINBRA(p, i)){
         oper[k] = i;
         k++;
