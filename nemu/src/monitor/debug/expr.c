@@ -159,6 +159,9 @@ uint32_t expr(char *e) {
 
   else{
     for(int i = 0; i < nr_token; i++){
+      printf("%s\n", tokens[i].str);
+    }
+    for(int i = 0; i < nr_token; i++){
       if(tokens[i].type == 103 && (i == 0 || (tokens[i - 1].type >= 100 && tokens[i - 1].type <= 105) || tokens[i - 1].type == 40)){
         tokens[i].type = 80;
       }
