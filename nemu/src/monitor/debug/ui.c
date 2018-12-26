@@ -43,10 +43,8 @@ static int cmd_si(char *args){
     cpu_exec(1);
   else
   {
-    for (int i = 0; i < atoi(args); i++)
-    {
-      cpu_exec(1);
-    }
+    int n = atoi(args);
+    cpu_exec(n);
   }
   return 0;
 }
