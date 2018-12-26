@@ -78,7 +78,7 @@ void print_wp(){
 		return;
 	}
 	while(node != free_){
-		printf("%-3d %10s %d|0x%x\n", node->NO, node->exp,node->result, node->result);
+		printf("%-3d %10s %d\t|0x%x\n", node->NO, node->exp,node->result, node->result);
 		node = node->next;
 	}
 }
