@@ -11,6 +11,7 @@
 int nemu_state = NEMU_STOP;
 
 void exec_wrapper(bool);
+bool check_wp();
 
 static uint64_t g_nr_guest_instr = 0;
 
@@ -40,6 +41,9 @@ void cpu_exec(uint64_t n) {
 
 #ifdef DEBUG
     /* TODO: check watchpoints here. */
+    if(check_wp()){
+      nemu_state = NEMU_STOP;
+    }
 
 #endif
 
@@ -56,6 +60,10 @@ void cpu_exec(uint64_t n) {
         return;
       }
       else if (nemu_state == NEMU_ABORT) {
+        printflog("\33[1;31mnemu: ABORT\33[0m at eip = 0x%08x\n\n", cpu.eip);
+        return;
+      }
+      else if (nemu_state == NEMU_STOP) {
         printflog("\33[1;31mnemu: ABORT\33[0m at eip = 0x%08x\n\n", cpu.eip);
         return;
       }

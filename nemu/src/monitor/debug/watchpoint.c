@@ -31,7 +31,6 @@ void new_wp(char *e, int result){
 		head = new;
 	}
 	printf("create a new watchpoint: NO:%d, result: %d\n", new->NO, new->result);
-	printf("%d\n", head->NO);
 
 }
 
@@ -44,7 +43,6 @@ void free_wp(int i){
 	}
 	WP *new_pre = head;
 	WP *p1 = head;
-	printf("head = %d\n", head->NO);
 	if(head->NO == i){
 		new_pre->next = free_;
 		free_ = new_pre;
@@ -59,13 +57,11 @@ void free_wp(int i){
 		}
 		printf("new_pre = %d, p1 = %d\n", new_pre->NO, p1->NO);
 		if(new_pre->next == free_){
-			printf("hah\n");
 			free_ = new_pre;
 			head_f->next =free_;
 			printf("the NO of: %d has deleted!\n", i);
 		}
 		else{
-			printf("lala\n");
 			p1->next = new_pre->next;
 			new_pre->next = free_;
 			free_ = new_pre;
