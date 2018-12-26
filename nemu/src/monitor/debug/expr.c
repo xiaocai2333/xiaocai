@@ -279,7 +279,6 @@ uint32_t eval(int p, int q){
       return 0;
     }
     op = OP_CET(p,q);
-    printf("op = %d, %s\n", op, tokens[op].str);
 
     if(tokens[op].type == 80 || tokens[op].type == 99){
       val1 = 0;
