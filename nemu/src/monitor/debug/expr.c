@@ -169,7 +169,6 @@ uint32_t expr(char *e) {
     if(IsOPERTRUE(0,nr_token -1)){
       sum = eval(0,nr_token - 1);
       if(success){
-        //printf("lal\n");
         return sum;
       }
       else{
