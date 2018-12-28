@@ -1,5 +1,8 @@
 #include "cpu/exec.h"
 
+#define Isltzero(_reg) ((int32_t)(_reg) >= 0)
+#define Isunsign_32(_reg) (((int32_t)(_reg) >> 31) == 0)
+
 make_EHelper(add) {
   TODO();
 
@@ -7,7 +10,21 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  TODO();
+  //TODO();
+  rtl_sext(&t1, &id_dest->val, id_dest->width);
+  rtl_sext(&t2, &id_src->val, id_src->width);
+
+  rtl_sub(&t0, &t1, &t2);
+
+  t3 = (t0 > t1);
+  rtl_set_CF(&t3);            // carry flag
+  t3 = ((Isltzero(t1) == Isunsign_32(t2)) && (Isltzero(t0) != Isltzero(t1)));
+  rtl_set_OF(&t3);            // overflow flag
+
+  rtl_update_ZFSF(&t0, 4);
+  operand_write(id_dest, &t0);
+
+
 
   print_asm_template2(sub);
 }
