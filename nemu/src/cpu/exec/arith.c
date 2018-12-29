@@ -1,10 +1,24 @@
 #include "cpu/exec.h"
 
 #define Isltzero(_reg) ((int32_t)(_reg) >= 0)
+#define ISgezero(_reg) ((int32_t)(_reg) < 0)
 #define Isunsign_32(_reg) (((int32_t)(_reg) >> 31) == 0)
 
 make_EHelper(add) {
-  TODO();
+  //TODO();
+  rtl_sext(&t1, &id_dest->val, id_dest->width);
+  rtl_sext(&t2, &id_src->val, id_src->width);
+
+  rtl_add(&t0, &t1, &t2);
+  // Log("exec_add - t0: %d, t1: %d, t2: %d\n", t0, t1, t2);
+
+  t3 = (t0 < t1);
+  rtl_set_CF(&t3);            // carry flag
+  t3 = ((ISgezero(t1) ^ ISgezero(t2)) && (ISgezero(t0) ^ ISgezero(t2)));
+  rtl_set_OF(&t3);            // overflow flag
+
+  rtl_update_ZFSF(&t0, 4);
+  operand_write(id_dest, &t0);
 
   print_asm_template2(add);
 }
