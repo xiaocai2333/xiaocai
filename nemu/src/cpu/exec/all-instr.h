@@ -14,5 +14,5 @@ make_EHelper(pop);
 make_EHelper(xor);
 make_EHelper(ret);
 
-
+make_EHelper(jmp);
 make_EHelper(nop);
