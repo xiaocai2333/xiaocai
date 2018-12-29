@@ -24,8 +24,6 @@ make_EHelper(sub) {
   rtl_update_ZFSF(&t0, 4);
   operand_write(id_dest, &t0);
 
-
-
   print_asm_template2(sub);
 }
 
