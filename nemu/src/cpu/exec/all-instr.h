@@ -13,3 +13,6 @@ make_EHelper(sub);
 make_EHelper(pop);
 make_EHelper(xor);
 make_EHelper(ret);
+
+
+make_EHelper(nop);
