@@ -47,7 +47,12 @@ make_EHelper(cmp) {
   rtl_sext(&t2, &id_src->val, id_src->width);
 
   rtl_sub(&t0, &t1, &t2);
-  t3 = (t0 > t1);
+  if(t0 > t1){
+    t3 = 1;
+  }
+  else{
+    t3 = 0;
+  }
   rtl_set_OF(&t3);
   t3 = ((Isltzero(t1) == Isunsign_32(t2)) && (Isltzero(t0) != Isltzero(t1)));
 
