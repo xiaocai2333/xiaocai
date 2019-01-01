@@ -42,7 +42,14 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
-  TODO();
+  //TODO();
+  rtl_sext(&t1, &id_dest->val, id_dest->width);
+  rtl_sext(&t2, &id_src->val, id_src->width);
+
+  rtl_sub(&t0, &t1, &t2);
+  t3 = (t0 > t1);
+  rtl_set_OF(&t3);
+  t3 = ((Isltzero(t1) == Isunsign_32(t2)) && (Isltzero(t0) != Isltzero(t1)));
 
   print_asm_template2(cmp);
 }
