@@ -34,19 +34,30 @@ typedef struct {
   vaddr_t eip;
 
 union {
-  uint32_t val;
-  struct {
-    uint32_t CF:1;
-    unsigned : 5;
-    uint32_t ZF:1;
-    uint32_t SF:1;
-    unsigned : 1;
-    uint32_t IF:1;
-    unsigned : 1;
-    uint32_t OF:1;
-    unsigned:20;
+    struct {
+      uint8_t CF: 1;
+      uint8_t DEF1: 1;
+      uint8_t DEF2: 4;
+
+      uint8_t ZF: 1;
+      uint8_t SF: 1;
+      uint8_t DEF3: 1;
+
+      uint8_t IF: 1;
+      uint8_t DEF4: 1;
+
+      uint8_t OF: 1;
+      uint32_t DEF5: 20;
+    } eflags;
+    uint32_t flags;
   };
-}eflags;
+  uint8_t INTR;
+
+  struct {
+    uint16_t limit;
+    uint32_t base;
+  } idtr;
+  uint16_t cs;
 
 
 } CPU_state;
