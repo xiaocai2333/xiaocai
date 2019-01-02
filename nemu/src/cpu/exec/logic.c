@@ -88,6 +88,7 @@ make_EHelper(shr) {
 make_EHelper(setcc) {
   uint32_t cc = decoding.opcode & 0xf;
 
+  printf("jcc = %d\n", cc);
   rtl_setcc(&t2, cc);
   operand_write(id_dest, &t2);
 
