@@ -209,15 +209,14 @@ opcode_entry opcode_table [512] = {
 
 static make_EHelper(2byte_esc) {
   uint32_t opcode = instr_fetch(eip, 1) | 0x100;
-  printf("2byte_esc = %d\n", opcode);
   decoding.opcode = opcode;
   set_width(opcode_table[opcode].width);
   idex(eip, &opcode_table[opcode]);
 }
 
 make_EHelper(real) {
+  printf("eip = %x\n", cpu.eip);
   uint32_t opcode = instr_fetch(eip, 1);
-  printf("real = %d\n", opcode);
   decoding.opcode = opcode;
   set_width(opcode_table[opcode].width);
   idex(eip, &opcode_table[opcode]);
