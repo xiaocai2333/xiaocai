@@ -41,10 +41,7 @@ static inline make_DopHelper(SI) {
    *
    op->simm = ???
    */
-  //TODO();
-  const int shift_width = 8 * (4 - op->width);
-  op->simm = instr_fetch(eip, op->width);
-  op->simm = (op->simm << shift_width >> shift_width);
+  TODO();
 
   rtl_li(&op->val, op->simm);
 
