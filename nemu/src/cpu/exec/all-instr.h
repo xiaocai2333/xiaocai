@@ -51,3 +51,5 @@ make_EHelper(jmp_rm);
 make_EHelper(shr);
 //shuixianhua
 make_EHelper(mul);
+//sub-longlong
+make_EHelper(sbb);
