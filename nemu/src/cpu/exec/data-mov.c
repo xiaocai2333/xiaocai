@@ -9,11 +9,6 @@ make_EHelper(push) {
   // TODO();
 
   // XXX: DONE
-  if (id_dest->width == 1)
-  {
-    uint8_t u_dest_val = id_dest->val;
-    id_dest->val = (int8_t)u_dest_val;
-  }
   rtl_push(&id_dest->val);
 
   print_asm_template1(push);
@@ -23,7 +18,7 @@ make_EHelper(pop) {
   // TODO();
 
   // XXX: DONE
-  rtl_pop(&t0);
+  rtl_pop(&t2);
 
   // if (id_dest->width == 1)
   // {
@@ -34,8 +29,7 @@ make_EHelper(pop) {
   // {
   //   id_dest->val = t0;
   // }
-  id_dest->val = id_dest->width == 1 ? (int8_t)((uint8_t)t0) : t0;
-  operand_write(id_dest, &id_dest->val);
+  operand_write(id_dest, &t2);
 
   print_asm_template1(pop);
 }
