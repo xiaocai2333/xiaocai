@@ -16,3 +16,4 @@ make_EHelper(ret);
 //add
 make_EHelper(lea);
 make_EHelper(and);
+make_EHelper(add);
