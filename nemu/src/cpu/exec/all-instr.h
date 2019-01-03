@@ -42,3 +42,5 @@ make_EHelper(cltd);
 make_EHelper(idiv);
 //fact
 make_EHelper(jmp);
+//load-store
+make_EHelper(movsx);
