@@ -15,3 +15,4 @@ make_EHelper(xor);
 make_EHelper(ret);
 //add
 make_EHelper(lea);
+make_EHelper(and);
