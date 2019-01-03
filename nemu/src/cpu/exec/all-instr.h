@@ -27,3 +27,4 @@ make_EHelper(inc);
 //add-longlong
 make_EHelper(nop);
 make_EHelper(adc);
+make_EHelper(or);
