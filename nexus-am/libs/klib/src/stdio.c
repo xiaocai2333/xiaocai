@@ -8,8 +8,22 @@ int pvsprintf(char *out, size_t n, const char *fmt, va_list ap);
 int numtostr(char* out, uint32_t num);
 int hextostr(char* out, uint32_t num);
 void reverse(char* begin, char* end);
+
+
 int printf(const char *fmt, ...) {
-  return 0;
+  char buf[1024];
+  va_list args;
+  int i;
+
+  va_start(args, fmt);
+  i = pvsprintf(buf, 1024, fmt, args);
+  va_end(args);
+
+  for (char* p = buf; *p != '\0'; p++) {
+    _putc(*p);
+  }
+
+  return i;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
@@ -27,7 +41,12 @@ int sprintf(char *out, const char *fmt, ...) {
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
-  return 0;
+  va_list args;
+  int i;
+  va_start(args, fmt);
+  i = pvsprintf(out, n, fmt, args);
+  va_end(args);
+  return i;
 }
 
 int pvsprintf(char *out, size_t n, const char *fmt, va_list ap) {
