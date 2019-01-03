@@ -24,3 +24,5 @@ make_EHelper(test);
 make_EHelper(jcc);
 make_EHelper(leave);
 make_EHelper(inc);
+//add-longlong
+make_EHelper(nop);
