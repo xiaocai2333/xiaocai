@@ -53,3 +53,10 @@ make_EHelper(shr);
 make_EHelper(mul);
 //sub-longlong
 make_EHelper(sbb);
+
+make_EHelper(pusha);
+make_EHelper(popa);
+make_EHelper(neg);
+make_EHelper(cwtl);
+make_EHelper(div);
+make_EHelper(rol);
