@@ -18,7 +18,11 @@ char* strncpy(char* dst, const char* src, size_t n) {
 }
 
 char* strcat(char* dst, const char* src) {
-  return NULL;
+  assert(dst != NULL && src != NULL);
+  char* s;
+  for (s = dst; *s != '\0'; s++);
+  while ((*s++ = *src++) != '\0');
+  return dst;
 }
 
 int strcmp(const char* s1, const char* s2) {
