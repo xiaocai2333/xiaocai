@@ -44,3 +44,5 @@ make_EHelper(idiv);
 make_EHelper(jmp);
 //load-store
 make_EHelper(movsx);
+//recursion
+make_EHelper(call_rm);
