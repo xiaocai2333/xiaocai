@@ -47,3 +47,5 @@ make_EHelper(movsx);
 //recursion
 make_EHelper(call_rm);
 make_EHelper(jmp_rm);
+//shift
+make_EHelper(shr);
