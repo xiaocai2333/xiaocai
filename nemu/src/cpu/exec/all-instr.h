@@ -30,3 +30,4 @@ make_EHelper(adc);
 make_EHelper(or);
 //bit
 make_EHelper(sar);
+make_EHelper(shl);
