@@ -1,114 +1,38 @@
 #include "cpu/exec.h"
 
-#define Isltzero(_reg) ((int32_t)(_reg) >= 0)
-#define ISgezero(_reg) ((int32_t)(_reg) < 0)
-#define Isunsign_32(_reg) (((int32_t)(_reg) >> 31) == 0)
-
 make_EHelper(add) {
-  //TODO();
-  rtl_sext(&t1, &id_dest->val, id_dest->width);
-  rtl_sext(&t2, &id_src->val, id_src->width);
-
-  rtl_add(&t0, &t1, &t2);
-  // Log("exec_add - t0: %d, t1: %d, t2: %d\n", t0, t1, t2);
-
-  t3 = (t0 < t1);
-  rtl_set_CF(&t3);            // carry flag
-  t3 = ((ISgezero(t1) ^ ISgezero(t2)) && (ISgezero(t0) ^ ISgezero(t2)));
-  rtl_set_OF(&t3);            // overflow flag
-
-  rtl_update_ZFSF(&t0, 4);
-  operand_write(id_dest, &t0);
+  TODO();
 
   print_asm_template2(add);
 }
 
 make_EHelper(sub) {
-  //TODO();
-  rtl_sext(&t1, &id_dest->val, id_dest->width);
-  rtl_sext(&t2, &id_src->val, id_src->width);
-
-  rtl_sub(&t0, &t1, &t2);
-
-  t3 = (t0 > t1);
-  rtl_set_CF(&t3);            // carry flag
-  t3 = ((Isltzero(t1) == Isunsign_32(t2)) && (Isltzero(t0) != Isltzero(t1)));
-  rtl_set_OF(&t3);            // overflow flag
-
-  rtl_update_ZFSF(&t0, 4);
-  operand_write(id_dest, &t0);
+  TODO();
 
   print_asm_template2(sub);
 }
 
 make_EHelper(cmp) {
-  //TODO();
-  rtl_sext(&t1, &id_dest->val, id_dest->width);
-  rtl_sext(&t2, &id_src->val, id_src->width);
+  TODO();
 
-  rtl_sub(&t0, &t1, &t2);
-  if(t0 > t1){
-    t3 = 1;
-  }
-  else{
-    t3 = 0;
-  }
-  rtl_set_OF(&t3);
-  t3 = ((Isltzero(t1) == Isunsign_32(t2)) && (Isltzero(t0) != Isltzero(t1)));
-  rtl_update_ZFSF(&t0, 4);
   print_asm_template2(cmp);
 }
 
 make_EHelper(inc) {
-  //TODO();
-  rtl_addi(&t2, &id_dest->val, 1);
-  operand_write(id_dest, &t2);
-
-  rtl_update_ZFSF(&t2, id_dest->width);
-  rtl_xor(&t0, &id_dest->val, &id_src->val);
-  rtl_not(&t0, &t0);
-  rtl_xor(&t1, &id_dest->val, &t2);
-  rtl_and(&t0, &t0, &t1);
-
-  rtl_msb(&t0, &t0, id_dest->width);
-  rtl_set_OF(&t0);
+  TODO();
 
   print_asm_template1(inc);
 }
 
 make_EHelper(dec) {
-  //TODO();
-  rtl_subi(&t2, &id_dest->val, 1);    // BUG-FIX, "i--"
-  operand_write(id_dest, &t2);
+  TODO();
 
-  rtl_update_ZFSF(&t2, id_dest->width);
-
-  rtl_xor(&t0, &id_dest->val, &id_src->val);
-  // rtl_not(&t0, &t0);
-  rtl_xor(&t1, &id_dest->val, &t2);
-  rtl_and(&t0, &t0, &t1);
-
-  rtl_msb(&t0, &t0, id_dest->width);
-  rtl_set_OF(&t0);
   print_asm_template1(dec);
 }
 
 make_EHelper(neg) {
-  //TODO();
-  rtl_mv(&t0, &id_dest->val);
-  rtl_not(&t0, &t0);
-  rtl_addi(&t0, &t0, 1);
-  operand_write(id_dest, &t0);
+  TODO();
 
-  t1 = (id_dest->val != 0);
-  rtl_set_CF(&t1);
-
-  rtl_update_ZFSF(&t0, id_dest->width);
-
-  rtl_xor(&t1, &t0, &id_dest->val);
-  rtl_not(&t1, &t1);
-  rtl_msb(&t1, &t1, id_dest->width);
-  rtl_set_OF(&t1);
   print_asm_template1(neg);
 }
 
