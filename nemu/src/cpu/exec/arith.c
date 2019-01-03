@@ -1,19 +1,11 @@
 #include "cpu/exec.h"
 
-// using decode:t0, t1, t2, t3, at
-
-#define is_ge_0(_reg) ((int32_t)(_reg) >= 0)
-#define is_lt_0(_reg) ((int32_t)(_reg) < 0)
-#define is_unsign_32(_reg) (((int32_t)(_reg) >> 31) == 0)
+#define Isltzero(_reg) ((int32_t)(_reg) >= 0)
+#define ISgezero(_reg) ((int32_t)(_reg) < 0)
+#define Isunsign_32(_reg) (((int32_t)(_reg) >> 31) == 0)
 
 make_EHelper(add) {
-  // TODO();
-
-  // XXX: DONE
-  // NOTE: rtl_sext - signed extend
-
-  // Log("exec_add - dest: %d, src: %d\n", id_dest->val, id_src->val);
-
+  //TODO();
   rtl_sext(&t1, &id_dest->val, id_dest->width);
   rtl_sext(&t2, &id_src->val, id_src->width);
 
@@ -22,7 +14,7 @@ make_EHelper(add) {
 
   t3 = (t0 < t1);
   rtl_set_CF(&t3);            // carry flag
-  t3 = ((is_ge_0(t1) ^ is_ge_0(t2)) && (is_ge_0(t0) ^ is_ge_0(t2)));
+  t3 = ((ISgezero(t1) ^ ISgezero(t2)) && (ISgezero(t0) ^ ISgezero(t2)));
   rtl_set_OF(&t3);            // overflow flag
 
   rtl_update_ZFSF(&t0, 4);
@@ -32,9 +24,7 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  // TODO();
-
-  // XXX: DONE
+  //TODO();
   rtl_sext(&t1, &id_dest->val, id_dest->width);
   rtl_sext(&t2, &id_src->val, id_src->width);
 
@@ -42,7 +32,7 @@ make_EHelper(sub) {
 
   t3 = (t0 > t1);
   rtl_set_CF(&t3);            // carry flag
-  t3 = ((is_lt_0(t1) == is_unsign_32(t2)) && (is_lt_0(t0) != is_lt_0(t1)));
+  t3 = ((Isltzero(t1) == Isunsign_32(t2)) && (Isltzero(t0) != Isltzero(t1)));
   rtl_set_OF(&t3);            // overflow flag
 
   rtl_update_ZFSF(&t0, 4);
@@ -52,34 +42,29 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
-  // TODO();
-
-  // XXX: DONE
+  //TODO();
   rtl_sext(&t1, &id_dest->val, id_dest->width);
   rtl_sext(&t2, &id_src->val, id_src->width);
 
   rtl_sub(&t0, &t1, &t2);
-
-  t3 = (t0 > t1);
-  rtl_set_CF(&t3);            // carry flag
-  t3 = ((is_lt_0(t1) == is_unsign_32(t2)) && (is_lt_0(t0) != is_lt_0(t1)));
-  rtl_set_OF(&t3);            // overflow flag
-
+  if(t0 > t1){
+    t3 = 1;
+  }
+  else{
+    t3 = 0;
+  }
+  rtl_set_OF(&t3);
+  t3 = ((Isltzero(t1) == Isunsign_32(t2)) && (Isltzero(t0) != Isltzero(t1)));
   rtl_update_ZFSF(&t0, 4);
-  // operand_write(id_dest, &t0);
-
   print_asm_template2(cmp);
 }
 
 make_EHelper(inc) {
-  // TODO();
-
-  // XXX: DONE
+  //TODO();
   rtl_addi(&t2, &id_dest->val, 1);
   operand_write(id_dest, &t2);
 
   rtl_update_ZFSF(&t2, id_dest->width);
-
   rtl_xor(&t0, &id_dest->val, &id_src->val);
   rtl_not(&t0, &t0);
   rtl_xor(&t1, &id_dest->val, &t2);
@@ -92,9 +77,7 @@ make_EHelper(inc) {
 }
 
 make_EHelper(dec) {
-  // TODO();
-
-  // XXX: DONE
+  //TODO();
   rtl_subi(&t2, &id_dest->val, 1);    // BUG-FIX, "i--"
   operand_write(id_dest, &t2);
 
@@ -107,23 +90,11 @@ make_EHelper(dec) {
 
   rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
-
   print_asm_template1(dec);
 }
 
-/**
- * Two's Complement Negation
- */
 make_EHelper(neg) {
-  // TODO();
-
-// IF DEST = 0
-//   THEN CF ← 0;
-//   ELSE CF ← 1;
-// FI;
-// DEST ← [– (DEST)]
-
-  // XXX: DONE
+  //TODO();
   rtl_mv(&t0, &id_dest->val);
   rtl_not(&t0, &t0);
   rtl_addi(&t0, &t0, 1);
@@ -138,13 +109,9 @@ make_EHelper(neg) {
   rtl_not(&t1, &t1);
   rtl_msb(&t1, &t1, id_dest->width);
   rtl_set_OF(&t1);
-
   print_asm_template1(neg);
 }
 
-/**
- * Add with Carry
- */
 make_EHelper(adc) {
   rtl_add(&t2, &id_dest->val, &id_src->val);
   rtl_setrelop(RELOP_LTU, &t3, &t2, &id_dest->val);
@@ -168,9 +135,6 @@ make_EHelper(adc) {
   print_asm_template2(adc);
 }
 
-/**
- * Integer Subtraction with Borrow
- */
 make_EHelper(sbb) {
   rtl_sub(&t2, &id_dest->val, &id_src->val);
   rtl_setrelop(RELOP_LTU, &t3, &id_dest->val, &t2);

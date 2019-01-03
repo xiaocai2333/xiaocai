@@ -1,17 +1,12 @@
 #include "cpu/exec.h"
 
-#include "device/port-io.h"     // pio_?_?
+#include "device/port-io.h" 
 
 void difftest_skip_ref();
 void difftest_skip_dut();
 
-/**
- * Load Interrupt Descriptor Table Register
- */
 make_EHelper(lidt) {
-  // TODO();
-
-  // XXX: DONE
+  TODO();
 
   print_asm_template1(lidt);
 }
@@ -48,13 +43,8 @@ make_EHelper(iret) {
   print_asm("iret");
 }
 
-/**
- * Input from Port
- */
 make_EHelper(in) {
-  // TODO();
-
-  // XXX: DONE
+  //TODO();
   switch (id_src->width)
   {
     case 1:
@@ -73,7 +63,6 @@ make_EHelper(in) {
       break;
   }
   operand_write(id_dest, &t0);
-
   print_asm_template2(in);
 
 #if defined(DIFF_TEST)
@@ -82,9 +71,7 @@ make_EHelper(in) {
 }
 
 make_EHelper(out) {
-  // TODO();
-
-  // XXX: DONE
+  //TODO();
   switch (id_src->width)
   {
     case 1:
@@ -102,8 +89,6 @@ make_EHelper(out) {
     default:
       break;
   }
-  // operand_write(id_dest, &t0);
-
   print_asm_template2(out);
 
 #if defined(DIFF_TEST)

@@ -8,7 +8,6 @@ make_EHelper(jmp) {
   print_asm("jmp %x", decoding.jmp_eip);
 }
 
-/** Set Byte on Condition */
 make_EHelper(jcc) {
   // the target address is calculated at the decode stage
   uint32_t cc = decoding.opcode & 0xf;
@@ -27,30 +26,24 @@ make_EHelper(jmp_rm) {
 
 make_EHelper(call) {
   // the target address is calculated at the decode stage
-  // TODO();
-
-  // XXX: DONE
+  //TODO();
+  
   t0 = decoding.seq_eip;
   rtl_push(&t0);
   rtl_j(decoding.jmp_eip);
-
   print_asm("call %x", decoding.jmp_eip);
 }
 
 make_EHelper(ret) {
-  // TODO();
-
-  // XXX: DONE
   rtl_pop(&decoding.jmp_eip);
   rtl_j(decoding.jmp_eip);
+  //TODO();
 
   print_asm("ret");
 }
 
 make_EHelper(call_rm) {
-  // TODO();
-
-  // XXX: DONE
+  //TODO();
   t0 = decoding.seq_eip;
   rtl_push(&t0);
   rtl_jr(&id_dest->val);
