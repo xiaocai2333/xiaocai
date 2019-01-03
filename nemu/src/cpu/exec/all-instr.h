@@ -60,3 +60,5 @@ make_EHelper(neg);
 make_EHelper(cwtl);
 make_EHelper(div);
 make_EHelper(rol);
+make_EHelper(mov_r2cr);
+make_EHelper(mov_cr2r);
