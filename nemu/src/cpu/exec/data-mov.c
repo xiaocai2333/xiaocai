@@ -13,7 +13,6 @@ make_EHelper(push) {
     id_dest->val = (int8_t)u_dest_val;
   }
   rtl_push(&id_dest->val);
-
   print_asm_template1(push);
 }
 
@@ -22,7 +21,6 @@ make_EHelper(pop) {
   rtl_pop(&t0);
   id_dest->val = id_dest->width == 1 ? (int8_t)((uint8_t)t0) : t0;
   operand_write(id_dest, &id_dest->val);
-
   print_asm_template1(pop);
 }
 
@@ -38,7 +36,6 @@ make_EHelper(pusha) {
   rtl_push(&cpu.ebp);
   rtl_push(&cpu.esi);
   rtl_push(&cpu.edi);
-
   print_asm("pusha");
 }
 
@@ -53,7 +50,6 @@ make_EHelper(popa) {
   rtl_push(&cpu.edx);
   rtl_push(&cpu.ecx);
   rtl_push(&cpu.eax);
-
   print_asm("popa");
 }
 
@@ -62,7 +58,6 @@ make_EHelper(leave) {
   reg_l(4) = reg_l(5);
   rtl_pop(&t0);
   reg_w(5) = t0;
-
   print_asm("leave");
 }
 
