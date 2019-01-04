@@ -57,12 +57,17 @@ make_EHelper(iret) {
 
 make_EHelper(in) {
   switch (id_dest->width) {
-    case 1: t1 = pio_read_b(id_src->val); break;
-    case 2: t1 = pio_read_w(id_src->val); break;
-    case 4: t1 = pio_read_l(id_src->val); break;
+    case 1: t1 = pio_read_b(id_src->val); 
+            operand_write(id_dest, &t1);
+            break;
+    case 2: t1 = pio_read_w(id_src->val); 
+            operand_write(id_dest, &t1);
+            break;
+    case 4: t1 = pio_read_l(id_src->val); 
+            operand_write(id_dest, &t1);
+            break;
     default: assert(0);
   }
-  operand_write(id_dest, &t1);
 
   print_asm_template2(in);
 
