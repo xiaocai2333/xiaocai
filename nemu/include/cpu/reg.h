@@ -35,7 +35,9 @@ typedef struct {
   vaddr_t eip;
 
 union {
+    uint32_t flags;
     struct {
+
       uint8_t CF: 1;
       uint8_t DEF1: 1;
       uint8_t DEF2: 4;
@@ -50,7 +52,7 @@ union {
       uint8_t OF: 1;
       uint32_t DEF5: 20;
     } eflags;
-    uint32_t flags;
+    
   };
   bool INTR;
 
