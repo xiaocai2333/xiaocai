@@ -4,52 +4,36 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-int pvsprintf(char *out, size_t n, const char *fmt, va_list ap);
-int numtostr(char* out, uint32_t num);
-int hextostr(char* out, uint32_t num);
-void reverse(char* begin, char* end);
+int num2str(char* out, uint32_t num) {
+  char* end = out;
+  do {
+    *end++ = num % 10 + '0';
+    num /= 10;
+  } while (num);
+  return end - out;
+}
 
+int hex2str(char* out, uint32_t num) {
+  char* end = out;
+  do {
+    *end = num % 16;
+    *end += *end < 10 ? '0' : ('a' - 10);
+    end++;
+    num /= 16;
+  } while (num);
+  return end - out;
+}
 
-int printf(const char *fmt, ...) {
-  char buf[1024];
-  va_list args;
-  int i;
-
-  va_start(args, fmt);
-  i = pvsprintf(buf, 1024, fmt, args);
-  va_end(args);
-
-  for (char* p = buf; *p != '\0'; p++) {
-    _putc(*p);
+void reverse(char* begin, char* end) {
+  char tmp;
+  while (begin < end) {
+    tmp = *begin;
+    *begin++ = *end;
+    *end-- = tmp;
   }
-
-  return i;
 }
 
-int vsprintf(char *out, const char *fmt, va_list ap) {
-  return pvsprintf(out, INT_MAX, fmt, ap);;
-}
-
-int sprintf(char *out, const char *fmt, ...) {
-  va_list args;
-  int i;
-
-  va_start(args, fmt);
-  i = pvsprintf(out, INT_MAX, fmt, args);
-  va_end(args);
-  return i;
-}
-
-int snprintf(char *out, size_t n, const char *fmt, ...) {
-  va_list args;
-  int i;
-  va_start(args, fmt);
-  i = pvsprintf(out, n, fmt, args);
-  va_end(args);
-  return i;
-}
-
-int pvsprintf(char *out, size_t n, const char *fmt, va_list ap) {
+int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
   int num;
   char* start = out;
   char* end = out + n;
@@ -72,7 +56,7 @@ int pvsprintf(char *out, size_t n, const char *fmt, va_list ap) {
         *start++ = '0';
         *start++ = 'x';
       }
-      int r = *fmt == 'd' ? numtostr(start, num) : hextostr(start, num);
+      int r = *fmt == 'd' ? num2str(start, num) : hex2str(start, num);
       reverse(start, start + r - 1);
       start += r;
     } else if (*fmt == 's') {
@@ -88,7 +72,7 @@ int pvsprintf(char *out, size_t n, const char *fmt, va_list ap) {
       }
       if (*fmt == 'd' || *fmt == 'x' || *fmt == 'p') {
         num = va_arg(ap, int);
-        int r = *fmt == 'd' ? numtostr(start, num) : hextostr(start, num);
+        int r = *fmt == 'd' ? num2str(start, num) : hex2str(start, num);
         start[r++] = 'x';
         start[r++] = '0';
         for (; r < n; r++) {
@@ -108,33 +92,46 @@ int pvsprintf(char *out, size_t n, const char *fmt, va_list ap) {
   return start - out;
 }
 
-int numtostr(char* out, uint32_t num) {
-  char* end = out;
-  do {
-    *end++ = num % 10 + '0';
-    num /= 10;
-  } while (num);
-  return end - out;
-}
+int printf(const char *fmt, ...) {
+  char buf[1024];
+  va_list args;
+  int i;
 
-int hextostr(char* out, uint32_t num) {
-  char* end = out;
-  do {
-    *end = num % 16;
-    *end += *end < 10 ? '0' : ('a' - 10);
-    end++;
-    num /= 16;
-  } while (num);
-  return end - out;
-}
+  va_start(args, fmt);
+  i = vsnprintf(buf, 1024, fmt, args);
+  va_end(args);
 
-void reverse(char* begin, char* end) {
-  char tmp;
-  while (begin < end) {
-    tmp = *begin;
-    *begin++ = *end;
-    *end-- = tmp;
+  for (char* p = buf; *p != '\0'; p++) {
+    _putc(*p);
   }
+
+  return i;
+}
+
+int vsprintf(char *out, const char *fmt, va_list ap) {
+  return vsnprintf(out, INT_MAX, fmt, ap);;
+}
+
+int sprintf(char *out, const char *fmt, ...) {
+  va_list args;
+  int i;
+
+  va_start(args, fmt);
+  i = vsnprintf(out, INT_MAX, fmt, args);
+  va_end(args);
+
+  return i;
+}
+
+int snprintf(char *out, size_t n, const char *fmt, ...) {
+  va_list args;
+  int i;
+
+  va_start(args, fmt);
+  i = vsnprintf(out, n, fmt, args);
+  va_end(args);
+
+  return i;
 }
 
 #endif
