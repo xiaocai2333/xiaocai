@@ -56,18 +56,14 @@ make_EHelper(iret) {
 }
 
 make_EHelper(in) {
-  if(id_dest->width == 1){
-    t1 = pio_read_b(id_src->val); 
-    operand_write(id_dest, &t1);
+  switch (id_dest->width) {
+    case 1: t1 = pio_read_b(id_src->val); break;
+    case 2: t1 = pio_read_w(id_src->val); break;
+    case 4: t1 = pio_read_l(id_src->val); break;
+    default: assert(0);
   }
-  else if(id_dest->width == 2){
-    t1 = pio_read_w(id_src->val); 
-    operand_write(id_dest, &t1);
-  }
-  else if(id_dest->width == 2){
-    t1 = pio_read_l(id_src->val); 
-    operand_write(id_dest, &t1);
-  }
+  operand_write(id_dest, &t1);
+
   print_asm_template2(in);
 
 #if defined(DIFF_TEST)
