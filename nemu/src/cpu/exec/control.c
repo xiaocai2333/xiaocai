@@ -46,7 +46,6 @@ make_EHelper(call_rm) {
 }
 
 make_EHelper(ret_imm){
-  //assert(rtl_width == 2);
   rtlreg_t target_eip;
   rtl_pop(&target_eip);
   rtl_add(&cpu.esp, &cpu.esp, &id_dest->val);
