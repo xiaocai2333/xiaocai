@@ -44,3 +44,13 @@ make_EHelper(call_rm) {
   rtl_j(id_dest->val);
   print_asm("call *%s", id_dest->str);
 }
+
+make_EHelper(ret_imm){
+  //assert(rtl_width == 2);
+  rtlreg_t target_eip;
+  rtl_pop(&target_eip);
+  rtl_add(&cpu.esp, &cpu.esp, &id_dest->val);
+  rtl_jr(&target_eip);
+  print_asm("ret");
+
+}
