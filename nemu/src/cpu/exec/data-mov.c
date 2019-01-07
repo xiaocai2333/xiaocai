@@ -14,9 +14,7 @@ make_EHelper(push) {
 
 make_EHelper(pop) {
   //TODO();
-  printf("t2 = %x\n", t2);
   rtl_pop(&t2);
-  printf("t2 = %x\n", t2);
   operand_write(id_dest, &t2);
 
   print_asm_template1(pop);
